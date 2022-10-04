@@ -1,25 +1,39 @@
 {
-  "resources": [],
-  "overrided": {
-    "linkedFolders": [],
-    "ignoreDepsPattern": [
-      "*"
-    ],
-    "includeAsDev": [],
-    "includeOnly": [],
-    "dependencies": {}
+  resources: [],
+
+  overrided: {
+    linkedFolders: [],
+    ignoreDepsPattern: ['*'],
+    includeAsDev: [],
+    includeOnly: [],
+    dependencies: {}
   },
-  "linkedProjects": [],
-  "libReleaseOptions": {
-    "nodts": false,
-    "obscure": false,
-    "ugly": false
+
+  linkedProjects: [],
+  linkedRepos: [
+    {
+      origin: 'git@github.com:darekf77/typeorm.git',
+      relativeFoldersLinks: [{
+        from: 'src',
+        to: 'src/lib/typeorm',
+      }, {
+        from: '',
+        to: '',
+      }]
+    }
+  ],
+
+  libReleaseOptions: {
+    nodts: false,
+    obscure: false,
+    ugly: false
   },
-  "type": "isomorphic-lib",
-  "version": "v3",
-  "isCoreProject": false,
-  "isGenerated": false,
-  "useFramework": false,
-  "required": [],
-  "requiredServers": []
+
+  type: 'isomorphic-lib',
+  version: 'v3',
+  isCoreProject: false,
+  isGenerated: false,
+  useFramework: false,
+  required: [],
+  requiredServers: []
 }

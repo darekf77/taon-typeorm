@@ -1,2 +1,1 @@
-export function helloWorldFromFiredevTypeorm() { }
-        
+export * from './typeorm';
