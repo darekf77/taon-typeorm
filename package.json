@@ -1,6 +1,6 @@
 {
   "name": "firedev-typeorm",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "@angular-devkit/build-angular": "~13.3.9",
     "@angular-devkit/core": "~13.3.9",
