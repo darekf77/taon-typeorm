@@ -12,7 +12,7 @@ yarn-error.log
 testem.log
 /typings
 /linked-repos
-/src/lib/typeorm
+
 /tests-environments
 
 # System Files
