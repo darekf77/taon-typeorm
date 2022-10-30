@@ -1,30 +1,29 @@
-//#region @backend
 import mkdirp from "mkdirp"
-import  * as path from "path"
-import { DriverPackageNotInstalledError } from "../../error"
-import { DriverOptionNotSetError } from "../../error"
+import path from "path"
+import { DriverPackageNotInstalledError } from "../../error/DriverPackageNotInstalledError"
+import { SqliteQueryRunner } from "./SqliteQueryRunner"
+import { DriverOptionNotSetError } from "../../error/DriverOptionNotSetError"
 import { PlatformTools } from "../../platform/PlatformTools"
-import { DataSource } from "../../data-source"
+import { DataSource } from "../../data-source/DataSource"
+import { SqliteConnectionOptions } from "./SqliteConnectionOptions"
 import { ColumnType } from "../types/ColumnTypes"
 import { QueryRunner } from "../../query-runner/QueryRunner"
 import { AbstractSqliteDriver } from "../sqlite-abstract/AbstractSqliteDriver"
-import { BetterSqlite3ConnectionOptions } from "./BetterSqlite3ConnectionOptions"
-import { BetterSqlite3QueryRunner } from "./BetterSqlite3QueryRunner"
 import { ReplicationMode } from "../types/ReplicationMode"
 import { filepathToName, isAbsolute } from "../../util/PathUtils"
 
 /**
  * Organizes communication with sqlite DBMS.
  */
-export class BetterSqlite3Driver extends AbstractSqliteDriver {
+export class SqliteDriver extends AbstractSqliteDriver {
     // -------------------------------------------------------------------------
-    // Public Implemented Properties
+    // Public Properties
     // -------------------------------------------------------------------------
 
     /**
      * Connection options.
      */
-    options: BetterSqlite3ConnectionOptions
+    options: SqliteConnectionOptions
 
     /**
      * SQLite underlying library.
@@ -39,7 +38,7 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
         super(connection)
 
         this.connection = connection
-        this.options = connection.options as BetterSqlite3ConnectionOptions
+        this.options = connection.options as SqliteConnectionOptions
         this.database = this.options.database
 
         // validate options to make sure everything is set
@@ -58,16 +57,19 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
      * Closes connection with database.
      */
     async disconnect(): Promise<void> {
-        this.queryRunner = undefined
-        this.databaseConnection.close()
+        return new Promise<void>((ok, fail) => {
+            this.queryRunner = undefined
+            this.databaseConnection.close((err: any) =>
+                err ? fail(err) : ok(),
+            )
+        })
     }
 
     /**
      * Creates a query runner used to execute database queries.
      */
     createQueryRunner(mode: ReplicationMode): QueryRunner {
-        if (!this.queryRunner)
-            this.queryRunner = new BetterSqlite3QueryRunner(this)
+        if (!this.queryRunner) this.queryRunner = new SqliteQueryRunner(this)
 
         return this.queryRunner
     }
@@ -129,47 +131,40 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
      * Creates connection with the database.
      */
     protected async createDatabaseConnection() {
-        // not to create database directory if is in memory
-        if (this.options.database !== ":memory:")
-            await this.createDatabaseDirectory(
-                path.dirname(this.options.database),
-            )
+        await this.createDatabaseDirectory(this.options.database)
 
-        const {
-            database,
-            readonly = false,
-            fileMustExist = false,
-            timeout = 5000,
-            verbose = null,
-            nativeBinding = null,
-            prepareDatabase,
-        } = this.options
-        const databaseConnection = this.sqlite(database, {
-            readonly,
-            fileMustExist,
-            timeout,
-            verbose,
-            nativeBinding,
+        const databaseConnection: any = await new Promise((ok, fail) => {
+            const connection = new this.sqlite.Database(
+                this.options.database,
+                (err: any) => {
+                    if (err) return fail(err)
+                    ok(connection)
+                },
+            )
         })
+
+        // Internal function to run a command on the connection and fail if an error occured.
+        function run(line: string): Promise<void> {
+            return new Promise((ok, fail) => {
+                databaseConnection.run(line, (err: any) => {
+                    if (err) return fail(err)
+                    ok()
+                })
+            })
+        }
         // in the options, if encryption key for SQLCipher is setted.
         // Must invoke key pragma before trying to do any other interaction with the database.
         if (this.options.key) {
-            databaseConnection.exec(
-                `PRAGMA key = ${JSON.stringify(this.options.key)}`,
-            )
+            await run(`PRAGMA key = ${JSON.stringify(this.options.key)}`)
         }
 
-        // function to run before a database is used in typeorm.
-        if (typeof prepareDatabase === "function") {
-            prepareDatabase(databaseConnection)
+        if (this.options.enableWAL) {
+            await run(`PRAGMA journal_mode = WAL`)
         }
 
         // we need to enable foreign keys in sqlite to make sure all foreign key related features
         // working properly. this also makes onDelete to work with sqlite.
-        databaseConnection.exec(`PRAGMA foreign_keys = ON`)
-
-        // turn on WAL mode to enhance performance
-        databaseConnection.exec(`PRAGMA journal_mode = WAL`)
+        await run(`PRAGMA foreign_keys = ON`)
 
         return databaseConnection
     }
@@ -179,19 +174,18 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
      */
     protected loadDependencies(): void {
         try {
-            const sqlite =
-                this.options.driver || PlatformTools.load("better-sqlite3")
-            this.sqlite = sqlite
+            const sqlite = this.options.driver || PlatformTools.load("sqlite3")
+            this.sqlite = sqlite.verbose()
         } catch (e) {
-            throw new DriverPackageNotInstalledError("SQLite", "better-sqlite3")
+            throw new DriverPackageNotInstalledError("SQLite", "sqlite3")
         }
     }
 
     /**
      * Auto creates database directory if it does not exist.
      */
-    protected async createDatabaseDirectory(dbPath: string): Promise<void> {
-        await mkdirp(dbPath)
+    protected async createDatabaseDirectory(fullPath: string): Promise<void> {
+        await mkdirp(path.dirname(fullPath))
     }
 
     /**
@@ -206,9 +200,7 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
             attachHandle,
             attachFilepathAbsolute,
         } of Object.values(this.attachedDatabases)) {
-            await this.createDatabaseDirectory(
-                path.dirname(attachFilepathAbsolute),
-            )
+            await this.createDatabaseDirectory(attachFilepathAbsolute)
             await this.connection.query(
                 `ATTACH "${attachFilepathAbsolute}" AS "${attachHandle}"`,
             )
@@ -220,8 +212,7 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
         return path.dirname(
             isAbsolute(optionsDb)
                 ? optionsDb
-                : path.join(this.options.baseDirectory!, optionsDb),
+                : path.join(process.cwd(), optionsDb),
         )
     }
 }
-//#endregion

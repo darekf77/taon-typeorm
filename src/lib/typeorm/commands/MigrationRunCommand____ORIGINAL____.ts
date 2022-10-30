@@ -1,16 +1,16 @@
-import { DataSource } from "../data-source/DataSource"
+import path from "path"
+import * as process from "process"
 import * as yargs from "yargs"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
-import  * as process from "process"
+import { DataSource } from "../data-source"
 import { CommandUtils } from "./CommandUtils"
 
 /**
- * Reverts last migration command.
+ * Runs migration command.
  */
-export class MigrationRevertCommand implements yargs.CommandModule {
-    command = "migration:revert"
-    describe = "Reverts last executed migration."
+export class MigrationRunCommand implements yargs.CommandModule {
+    command = "migration:run"
+    describe = "Runs all pending migrations."
 
     builder(args: yargs.Argv) {
         return args
@@ -24,13 +24,15 @@ export class MigrationRevertCommand implements yargs.CommandModule {
                 alias: "t",
                 default: "default",
                 describe:
-                    "Indicates if transaction should be used or not for migration revert. Enabled by default.",
+                    "Indicates if transaction should be used or not for migration run. Enabled by default.",
             })
             .option("fake", {
                 alias: "f",
                 type: "boolean",
                 default: false,
-                describe: "Fakes reverting the migration",
+                describe:
+                    "Fakes running the migrations if table schema has already been changed manually or externally " +
+                    "(e.g. through another project)",
             })
     }
 
@@ -53,6 +55,7 @@ export class MigrationRevertCommand implements yargs.CommandModule {
                 transaction:
                     dataSource.options.migrationsTransactionMode ??
                     ("all" as "all" | "none" | "each"),
+                fake: !!args.f,
             }
 
             switch (args.t) {
@@ -70,10 +73,13 @@ export class MigrationRevertCommand implements yargs.CommandModule {
                 // noop
             }
 
-            await dataSource.undoLastMigration(options)
+            await dataSource.runMigrations(options)
             await dataSource.destroy()
+
+            // exit process if no errors
+            process.exit(0)
         } catch (err) {
-            PlatformTools.logCmdErr("Error during migration revert:", err)
+            PlatformTools.logCmdErr("Error during migration run:", err)
 
             if (dataSource && dataSource.isInitialized)
                 await dataSource.destroy()

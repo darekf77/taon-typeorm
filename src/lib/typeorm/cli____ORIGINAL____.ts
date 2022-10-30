@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-//#region @backend
 import "reflect-metadata"
 import yargs from "yargs"
 import { SchemaSyncCommand } from "./commands/SchemaSyncCommand"
@@ -39,4 +38,3 @@ yargs
     .alias("v", "version")
     .help("h")
     .alias("h", "help").argv
-//#endregion

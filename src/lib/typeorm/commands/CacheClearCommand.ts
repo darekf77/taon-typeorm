@@ -2,8 +2,8 @@ import { DataSource } from "../data-source/DataSource"
 import * as yargs from "yargs"
 import chalk from "chalk"
 import { PlatformTools } from "../platform/PlatformTools"
-import path from "path"
-import process from "process"
+import * as path from "path"
+import  * as process from "process"
 import { CommandUtils } from "./CommandUtils"
 
 /**

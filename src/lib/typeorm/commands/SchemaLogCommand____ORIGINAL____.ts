@@ -3,8 +3,8 @@ import { highlight } from "cli-highlight"
 import * as yargs from "yargs"
 import chalk from "chalk"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
-import  * as process from "process"
+import path from "path"
+import process from "process"
 import { CommandUtils } from "./CommandUtils"
 
 /**

@@ -1,15 +1,15 @@
-import { CommandUtils } from "./CommandUtils"
 import * as yargs from "yargs"
 import chalk from "chalk"
+import path from "path"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
+import { CommandUtils } from "./CommandUtils"
 
 /**
- * Generates a new entity.
+ * Generates a new subscriber.
  */
-export class EntityCreateCommand implements yargs.CommandModule {
-    command = "entity:create <path>"
-    describe = "Generates a new entity."
+export class SubscriberCreateCommand implements yargs.CommandModule {
+    command = "subscriber:create <path>"
+    describe = "Generates a new subscriber."
 
     async handler(args: yargs.Arguments) {
         try {
@@ -17,7 +17,7 @@ export class EntityCreateCommand implements yargs.CommandModule {
                 ? (args.path as string)
                 : path.resolve(process.cwd(), args.path as string)
             const filename = path.basename(fullPath)
-            const fileContent = EntityCreateCommand.getTemplate(filename)
+            const fileContent = SubscriberCreateCommand.getTemplate(filename)
             const fileExists = await CommandUtils.fileExists(fullPath + ".ts")
             if (fileExists) {
                 throw `File ${chalk.blue(fullPath + ".ts")} already exists`
@@ -25,13 +25,13 @@ export class EntityCreateCommand implements yargs.CommandModule {
             await CommandUtils.createFile(fullPath + ".ts", fileContent)
             console.log(
                 chalk.green(
-                    `Entity ${chalk.blue(
-                        fullPath + ".ts",
+                    `Subscriber ${chalk.blue(
+                        fullPath,
                     )} has been created successfully.`,
                 ),
             )
         } catch (err) {
-            PlatformTools.logCmdErr("Error during entity creation:", err)
+            PlatformTools.logCmdErr("Error during subscriber creation:")
             process.exit(1)
         }
     }
@@ -44,10 +44,10 @@ export class EntityCreateCommand implements yargs.CommandModule {
      * Gets contents of the entity file.
      */
     protected static getTemplate(name: string): string {
-        return `import { Entity } from "typeorm"
+        return `import { EventSubscriber, EntitySubscriberInterface } from "typeorm"
 
-@Entity()
-export class ${name} {
+@EventSubscriber()
+export class ${name} implements EntitySubscriberInterface {
 
 }
 `

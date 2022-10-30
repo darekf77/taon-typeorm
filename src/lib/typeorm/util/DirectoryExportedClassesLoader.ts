@@ -1,5 +1,5 @@
 //#region @backend
-import glob from "glob"
+import  * as glob from "glob"
 //#endregion
 import { PlatformTools } from "../platform/PlatformTools"
 import { Logger } from "../logger/Logger"

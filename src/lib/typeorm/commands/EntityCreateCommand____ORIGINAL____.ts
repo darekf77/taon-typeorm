@@ -2,7 +2,7 @@ import { CommandUtils } from "./CommandUtils"
 import * as yargs from "yargs"
 import chalk from "chalk"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
+import path from "path"
 
 /**
  * Generates a new entity.

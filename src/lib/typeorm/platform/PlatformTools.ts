@@ -2,7 +2,7 @@
 //#region @backend
 import * as path from "path"
 import * as fs from "fs"
-import dotenv from "dotenv"
+import * as dotenv from "dotenv"
 import chalk from "chalk"
 import { highlight, Theme } from "cli-highlight"
 

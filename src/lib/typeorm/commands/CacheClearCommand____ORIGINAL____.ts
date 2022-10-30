@@ -2,18 +2,16 @@ import { DataSource } from "../data-source/DataSource"
 import * as yargs from "yargs"
 import chalk from "chalk"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
-import * as process from "process"
+import path from "path"
+import process from "process"
 import { CommandUtils } from "./CommandUtils"
 
 /**
- * Drops all tables of the database from the given dataSource.
+ * Clear cache command.
  */
-export class SchemaDropCommand implements yargs.CommandModule {
-    command = "schema:drop"
-    describe =
-        "Drops all tables in the database on your default dataSource. " +
-        "To drop table of a concrete connection's database use -c option."
+export class CacheClearCommand implements yargs.CommandModule {
+    command = "cache:clear"
+    describe = "Clears all data stored in query runner cache."
 
     builder(args: yargs.Argv) {
         return args.option("dataSource", {
@@ -31,23 +29,30 @@ export class SchemaDropCommand implements yargs.CommandModule {
                 path.resolve(process.cwd(), args.dataSource as string),
             )
             dataSource.setOptions({
+                subscribers: [],
                 synchronize: false,
                 migrationsRun: false,
                 dropSchema: false,
-                logging: ["query", "schema"],
+                logging: ["schema"],
             })
             await dataSource.initialize()
-            await dataSource.dropDatabase()
-            await dataSource.destroy()
 
-            console.log(
-                chalk.green("Database schema has been successfully dropped."),
-            )
+            if (!dataSource.queryResultCache) {
+                PlatformTools.logCmdErr(
+                    "Cache is not enabled. To use cache enable it in connection configuration.",
+                )
+                return
+            }
+
+            await dataSource.queryResultCache.clear()
+            console.log(chalk.green("Cache was successfully cleared"))
+
+            await dataSource.destroy()
         } catch (err) {
-            PlatformTools.logCmdErr("Error during schema drop:", err)
+            PlatformTools.logCmdErr("Error during cache clear.", err)
 
             if (dataSource && dataSource.isInitialized)
-                await dataSource.destroy()
+                await (dataSource as DataSource).destroy()
 
             process.exit(1)
         }

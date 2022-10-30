@@ -2,18 +2,18 @@ import { DataSource } from "../data-source/DataSource"
 import * as yargs from "yargs"
 import chalk from "chalk"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
-import * as process from "process"
+import path from "path"
+import process from "process"
 import { CommandUtils } from "./CommandUtils"
 
 /**
- * Drops all tables of the database from the given dataSource.
+ * Synchronizes database schema with entities.
  */
-export class SchemaDropCommand implements yargs.CommandModule {
-    command = "schema:drop"
+export class SchemaSyncCommand implements yargs.CommandModule {
+    command = "schema:sync"
     describe =
-        "Drops all tables in the database on your default dataSource. " +
-        "To drop table of a concrete connection's database use -c option."
+        "Synchronizes your entities with database schema. It runs schema update queries on all connections you have. " +
+        "To run update queries on a concrete connection use -c option."
 
     builder(args: yargs.Argv) {
         return args.option("dataSource", {
@@ -37,14 +37,14 @@ export class SchemaDropCommand implements yargs.CommandModule {
                 logging: ["query", "schema"],
             })
             await dataSource.initialize()
-            await dataSource.dropDatabase()
+            await dataSource.synchronize()
             await dataSource.destroy()
 
             console.log(
-                chalk.green("Database schema has been successfully dropped."),
+                chalk.green("Schema synchronization finished successfully."),
             )
         } catch (err) {
-            PlatformTools.logCmdErr("Error during schema drop:", err)
+            PlatformTools.logCmdErr("Error during schema synchronization:", err)
 
             if (dataSource && dataSource.isInitialized)
                 await dataSource.destroy()

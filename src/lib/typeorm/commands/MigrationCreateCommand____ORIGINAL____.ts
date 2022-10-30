@@ -3,7 +3,7 @@ import { camelCase } from "../util/StringUtils"
 import * as yargs from "yargs"
 import chalk from "chalk"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
+import path from "path"
 
 /**
  * Creates a new migration file.
