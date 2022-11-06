@@ -6,7 +6,7 @@ import { format } from "@sqltools/formatter/lib/sqlFormatter"
 import { PlatformTools } from "../platform/PlatformTools"
 import { DataSource } from "../data-source"
 import * as path from "path"
-import  * as process from "process"
+import process from "process"
 
 /**
  * Generates a new migration file with sql needs to be executed to update schema.

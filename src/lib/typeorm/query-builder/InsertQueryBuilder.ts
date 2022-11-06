@@ -21,10 +21,12 @@ import { AuroraMysqlDriver } from "../driver/aurora-mysql/AuroraMysqlDriver"
 import { DriverUtils } from "../driver/DriverUtils"
 import { ObjectUtils } from "../util/ObjectUtils"
 import { InstanceChecker } from "../util/InstanceChecker"
+import { CLASS } from 'typescript-class-helpers';
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.
  */
+@CLASS.NAME('InsertQueryBuilder')
 export class InsertQueryBuilder<
     Entity extends ObjectLiteral,
 > extends QueryBuilder<Entity> {

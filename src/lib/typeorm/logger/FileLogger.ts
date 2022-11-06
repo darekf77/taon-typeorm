@@ -1,6 +1,6 @@
 //#region @backend
 import { FileLoggerOptions, LoggerOptions } from "./LoggerOptions"
-import appRootPath from "app-root-path"
+import  * as appRootPath from "app-root-path"
 import { QueryRunner } from "../query-runner/QueryRunner"
 import { Logger } from "./Logger"
 import { PlatformTools } from "../platform/PlatformTools"

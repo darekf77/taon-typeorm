@@ -1,5 +1,5 @@
 //#region @backend
-import glob from "glob"
+import  * as glob from "glob"
 //#endregion
 import { PlatformTools } from "../platform/PlatformTools"
 import { Logger } from "../logger/Logger"
@@ -15,7 +15,8 @@ export async function importClassesFromDirectories(
     directories: string[],
     formats = [".js", ".mjs", ".cjs", ".ts", ".mts", ".cts"],
 ): Promise<Function[]> {
-  //#region @backendFunc
+
+  //#region @backend
     const logLevel = "info"
     const classesNotFoundMessage =
         "No classes were found using the provided glob pattern: "
@@ -67,7 +68,8 @@ export async function importClassesFromDirectories(
 
     return loadFileClasses(dirs, [])
     //#endregion
-}
+    return [];
+  }
 
 /**
  * Loads all json files from the given directory.

@@ -1,19 +1,16 @@
-import { DataSource } from "../data-source/DataSource"
-import * as yargs from "yargs"
-import chalk from "chalk"
-import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
+import { DataSource } from "../data-source"
 import * as process from "process"
+import * as yargs from "yargs"
+import { PlatformTools } from "../platform/PlatformTools"
+import path from "path"
 import { CommandUtils } from "./CommandUtils"
 
 /**
- * Drops all tables of the database from the given dataSource.
+ * Shows all migrations and whether they have been run or not.
  */
-export class SchemaDropCommand implements yargs.CommandModule {
-    command = "schema:drop"
-    describe =
-        "Drops all tables in the database on your default dataSource. " +
-        "To drop table of a concrete connection's database use -c option."
+export class MigrationShowCommand implements yargs.CommandModule {
+    command = "migration:show"
+    describe = "Show all migrations and whether they have been run or not"
 
     builder(args: yargs.Argv) {
         return args.option("dataSource", {
@@ -31,20 +28,19 @@ export class SchemaDropCommand implements yargs.CommandModule {
                 path.resolve(process.cwd(), args.dataSource as string),
             )
             dataSource.setOptions({
+                subscribers: [],
                 synchronize: false,
                 migrationsRun: false,
                 dropSchema: false,
-                logging: ["query", "schema"],
+                logging: ["schema"],
             })
             await dataSource.initialize()
-            await dataSource.dropDatabase()
+            await dataSource.showMigrations()
             await dataSource.destroy()
 
-            console.log(
-                chalk.green("Database schema has been successfully dropped."),
-            )
+            process.exit(0)
         } catch (err) {
-            PlatformTools.logCmdErr("Error during schema drop:", err)
+            PlatformTools.logCmdErr("Error during migration show:", err)
 
             if (dataSource && dataSource.isInitialized)
                 await dataSource.destroy()

@@ -1,6 +1,6 @@
 //#region @backend
-import appRootPath from "app-root-path"
-import path from "path"
+import * as  appRootPath from "app-root-path"
+import  * as path from "path"
 //#endregion
 import { DataSourceOptions } from "../data-source/DataSourceOptions"
 import { PlatformTools } from "../platform/PlatformTools"

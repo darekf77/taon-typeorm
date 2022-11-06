@@ -27,6 +27,7 @@ import { OracleDriver } from "../driver/oracle/OracleDriver"
 //#endregion
 import { InstanceChecker } from "../util/InstanceChecker"
 import { escapeRegExp } from "../util/escapeRegExp"
+import { CLASS } from "typescript-class-helpers"
 
 // todo: completely cover query builder with tests
 // todo: entityOrProperty can be target name. implement proper behaviour if it is.
@@ -195,10 +196,12 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
     insert(): InsertQueryBuilder<Entity> {
         this.expressionMap.queryType = "insert"
 
-        // loading it dynamically because of circular issue
-        const InsertQueryBuilderCls = // @ts-ignore
-            require("./InsertQueryBuilder").InsertQueryBuilder
-        if (InstanceChecker.isInsertQueryBuilder(this)) return this as any
+        // loading it dynamically because of circular issue // @ts-ignore
+        const InsertQueryBuilderCls =  CLASS.getBy('InsertQueryBuilder') as typeof InsertQueryBuilder;
+        // debugger
+        if (InstanceChecker.isInsertQueryBuilder(this)) {
+          return this as any;
+        }
 
         return new InsertQueryBuilderCls(this)
     }

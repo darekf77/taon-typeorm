@@ -1,6 +1,5 @@
-//#region @backend
 import mkdirp from "mkdirp"
-import  * as path from "path"
+import path from "path"
 import { DriverPackageNotInstalledError } from "../../error"
 import { DriverOptionNotSetError } from "../../error"
 import { PlatformTools } from "../../platform/PlatformTools"
@@ -224,4 +223,3 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
         )
     }
 }
-//#endregion

@@ -1,4 +1,3 @@
-//#region @backend
 import { QueryRunnerAlreadyReleasedError } from "../../error/QueryRunnerAlreadyReleasedError"
 import { QueryFailedError } from "../../error/QueryFailedError"
 import { AbstractSqliteQueryRunner } from "../sqlite-abstract/AbstractSqliteQueryRunner"
@@ -170,4 +169,3 @@ export class BetterSqlite3QueryRunner extends AbstractSqliteQueryRunner {
         return res
     }
 }
-//#endregion
