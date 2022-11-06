@@ -428,7 +428,7 @@ export class DataSource {
      */
     getMetadata(target: EntityTarget<any>): EntityMetadata {
         const metadata = this.findMetadata(target)
-        if (!metadata) throw new EntityMetadataNotFoundError(target)
+        if (!metadata) {throw new EntityMetadataNotFoundError(target);}
 
         return metadata
     }
