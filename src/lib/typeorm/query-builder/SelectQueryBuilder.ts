@@ -49,10 +49,12 @@ import { EntityPropertyNotFoundError } from "../error/EntityPropertyNotFoundErro
 import { AuroraMysqlDriver } from "../driver/aurora-mysql/AuroraMysqlDriver"
 //#endregion
 import { InstanceChecker } from "../util/InstanceChecker"
+import { CLASS } from "typescript-class-helpers"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.
  */
+@CLASS.NAME('SelectQueryBuilder')
 export class SelectQueryBuilder<Entity extends ObjectLiteral>
     extends QueryBuilder<Entity>
     implements WhereExpressionBuilder

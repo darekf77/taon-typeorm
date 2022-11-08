@@ -4,12 +4,14 @@ import { RelationRemover } from "./RelationRemover"
 import { TypeORMError } from "../error"
 import { ObjectUtils } from "../util/ObjectUtils"
 import { ObjectLiteral } from "../common/ObjectLiteral"
+import { CLASS } from "typescript-class-helpers"
 
 /**
  * Allows to work with entity relations and perform specific operations with those relations.
  *
  * todo: add transactions everywhere
  */
+@CLASS.NAME('RelationQueryBuilder')
 export class RelationQueryBuilder<
     Entity extends ObjectLiteral,
 > extends QueryBuilder<Entity> {

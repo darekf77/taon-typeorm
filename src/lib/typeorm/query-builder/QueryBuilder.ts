@@ -183,8 +183,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
         }
 
         // loading it dynamically because of circular issue
-        const SelectQueryBuilderCls = // @ts-ignore
-            require("./SelectQueryBuilder").SelectQueryBuilder
+        const SelectQueryBuilderCls = CLASS.getBy('SelectQueryBuilder') as typeof SelectQueryBuilder;
         if (InstanceChecker.isSelectQueryBuilder(this)) return this as any
 
         return new SelectQueryBuilderCls(this)
@@ -262,8 +261,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
         this.expressionMap.valuesSet = updateSet
 
         // loading it dynamically because of circular issue
-        const UpdateQueryBuilderCls = // @ts-ignore
-            require("./UpdateQueryBuilder").UpdateQueryBuilder
+        const UpdateQueryBuilderCls = CLASS.getBy('UpdateQueryBuilder') as typeof UpdateQueryBuilder;
         if (InstanceChecker.isUpdateQueryBuilder(this)) return this as any
 
         return new UpdateQueryBuilderCls(this)
@@ -276,8 +274,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
         this.expressionMap.queryType = "delete"
 
         // loading it dynamically because of circular issue
-        const DeleteQueryBuilderCls = // @ts-ignore
-            require("./DeleteQueryBuilder").DeleteQueryBuilder
+        const DeleteQueryBuilderCls = CLASS.getBy('DeleteQueryBuilder') as typeof DeleteQueryBuilder;
         if (InstanceChecker.isDeleteQueryBuilder(this)) return this as any
 
         return new DeleteQueryBuilderCls(this)
@@ -287,8 +284,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
         this.expressionMap.queryType = "soft-delete"
 
         // loading it dynamically because of circular issue
-        const SoftDeleteQueryBuilderCls = // @ts-ignore
-            require("./SoftDeleteQueryBuilder").SoftDeleteQueryBuilder
+        const SoftDeleteQueryBuilderCls = CLASS.getBy('SoftDeleteQueryBuilder') as typeof SoftDeleteQueryBuilder;
         if (InstanceChecker.isSoftDeleteQueryBuilder(this)) return this as any
 
         return new SoftDeleteQueryBuilderCls(this)
@@ -298,8 +294,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
         this.expressionMap.queryType = "restore"
 
         // loading it dynamically because of circular issue
-        const SoftDeleteQueryBuilderCls = // @ts-ignore
-            require("./SoftDeleteQueryBuilder").SoftDeleteQueryBuilder
+        const SoftDeleteQueryBuilderCls = CLASS.getBy('SoftDeleteQueryBuilder') as typeof SoftDeleteQueryBuilder;
         if (InstanceChecker.isSoftDeleteQueryBuilder(this)) return this as any
 
         return new SoftDeleteQueryBuilderCls(this)
@@ -341,8 +336,7 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
         }
 
         // loading it dynamically because of circular issue
-        const RelationQueryBuilderCls = // @ts-ignore
-            require("./RelationQueryBuilder").RelationQueryBuilder
+        const RelationQueryBuilderCls = CLASS.getBy('RelationQueryBuilder') as typeof RelationQueryBuilder;
         if (InstanceChecker.isRelationQueryBuilder(this)) return this as any
 
         return new RelationQueryBuilderCls(this)

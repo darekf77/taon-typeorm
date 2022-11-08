@@ -8,10 +8,12 @@ import { Brackets } from "./Brackets"
 import { DeleteResult } from "./result/DeleteResult"
 import { ReturningStatementNotSupportedError } from "../error/ReturningStatementNotSupportedError"
 import { InstanceChecker } from "../util/InstanceChecker"
+import { CLASS } from "typescript-class-helpers"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.
  */
+@CLASS.NAME('DeleteQueryBuilder')
 export class DeleteQueryBuilder<Entity extends ObjectLiteral>
     extends QueryBuilder<Entity>
     implements WhereExpressionBuilder

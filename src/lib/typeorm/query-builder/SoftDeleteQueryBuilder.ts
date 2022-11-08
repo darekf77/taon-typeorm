@@ -15,10 +15,12 @@ import { UpdateValuesMissingError } from "../error/UpdateValuesMissingError"
 import { TypeORMError } from "../error"
 import { DriverUtils } from "../driver/DriverUtils"
 import { InstanceChecker } from "../util/InstanceChecker"
+import { CLASS } from "typescript-class-helpers"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.
  */
+@CLASS.NAME('SoftDeleteQueryBuilder')
 export class SoftDeleteQueryBuilder<Entity extends ObjectLiteral>
     extends QueryBuilder<Entity>
     implements WhereExpressionBuilder

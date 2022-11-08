@@ -24,10 +24,12 @@ import { EntityPropertyNotFoundError } from "../error/EntityPropertyNotFoundErro
 import { SqlServerDriver } from "../driver/sqlserver/SqlServerDriver"
 //#endregion
 import { DriverUtils } from "../driver/DriverUtils"
+import { CLASS } from "typescript-class-helpers"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.
  */
+@CLASS.NAME('UpdateQueryBuilder')
 export class UpdateQueryBuilder<Entity extends ObjectLiteral>
     extends QueryBuilder<Entity>
     implements WhereExpressionBuilder
