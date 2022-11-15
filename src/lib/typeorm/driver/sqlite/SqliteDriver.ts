@@ -1,4 +1,4 @@
-import mkdirp from "mkdirp"
+import * as mkdirp from "mkdirp"
 import  * as path from "path"
 import { DriverPackageNotInstalledError } from "../../error/DriverPackageNotInstalledError"
 import { SqliteQueryRunner } from "./SqliteQueryRunner"

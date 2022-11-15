@@ -1,5 +1,5 @@
 //#region @backend
-import mkdirp from "mkdirp"
+import * as mkdirp from "mkdirp"
 import  * as path from "path"
 import { DriverPackageNotInstalledError } from "../../error"
 import { DriverOptionNotSetError } from "../../error"
