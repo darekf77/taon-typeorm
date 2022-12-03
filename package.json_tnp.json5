@@ -10,6 +10,8 @@
   },
 
   linkedProjects: [],
+  smartContainerBuildTarget: '',
+
   linkedRepos: [
     {
       origin: 'git@github.com:darekf77/typeorm.git',
@@ -28,8 +30,6 @@
     obscure: false,
     ugly: false
   },
-
-  smartContainerBuildTarget: '',
 
   smartContainerTarget: '',
   type: 'isomorphic-lib',
