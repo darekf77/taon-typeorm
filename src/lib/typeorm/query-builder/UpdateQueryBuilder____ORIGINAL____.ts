@@ -481,6 +481,7 @@ export class UpdateQueryBuilder<Entity extends ObjectLiteral>
         // it doesn't make sense to update undefined properties, so just skip them
         const valuesSetNormalized: ObjectLiteral = {}
         for (let key in valuesSet) {
+
             if (valuesSet[key] !== undefined) {
                 valuesSetNormalized[key] = valuesSet[key]
             }
