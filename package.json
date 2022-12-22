@@ -116,7 +116,7 @@
     "firedev-crud-deamon": "~13.1.25",
     "firedev-ports": "~13.1.29",
     "firedev-storage": "~13.1.20",
-    "firedev-typeorm": "~13.1.6",
+    "firedev-typeorm": "~13.1.7",
     "fkill": "6.1.0",
     "font-awesome": "4.7.0",
     "fs-extra": "8.1.0",
@@ -234,5 +234,5 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {},
-  "lastBuildTagHash": "4458fae2426a5622a92b3c48ccc9d2cb4cd2edcd"
+  "lastBuildTagHash": "6f7e5baa3efdaddaf3b2c18f530f598a751c4d2e"
 }
