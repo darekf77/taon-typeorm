@@ -29,6 +29,11 @@ import { DriverFactory } from "../driver/DriverFactory"
 import { ConnectionMetadataBuilder } from "../connection/ConnectionMetadataBuilder"
 import { QueryRunner } from "../query-runner/QueryRunner"
 import { SelectQueryBuilder } from "../query-builder/SelectQueryBuilder"
+import { UpdateQueryBuilder } from "../query-builder//UpdateQueryBuilder"
+import { DeleteQueryBuilder } from "../query-builder//DeleteQueryBuilder"
+import { SoftDeleteQueryBuilder } from "../query-builder/SoftDeleteQueryBuilder"
+import { InsertQueryBuilder } from "../query-builder/InsertQueryBuilder"
+import { RelationQueryBuilder } from "../query-builder/RelationQueryBuilder"
 import { LoggerFactory } from "../logger/LoggerFactory"
 import { QueryResultCacheFactory } from "../cache/QueryResultCacheFactory"
 import { QueryResultCache } from "../cache/QueryResultCache"
@@ -53,6 +58,13 @@ import { ObjectLiteral } from "../common/ObjectLiteral"
  */
 export class DataSource {
     readonly "@instanceof" = Symbol.for("DataSource")
+
+    SelectQueryBuilder  = SelectQueryBuilder;
+    UpdateQueryBuilder  = UpdateQueryBuilder;
+    DeleteQueryBuilder  = DeleteQueryBuilder;
+    SoftDeleteQueryBuilder  = SoftDeleteQueryBuilder;
+    InsertQueryBuilder  = InsertQueryBuilder;
+    RelationQueryBuilder  = RelationQueryBuilder;
 
     // -------------------------------------------------------------------------
     // Public Readonly Properties
