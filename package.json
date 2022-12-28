@@ -1,6 +1,4 @@
 {
-  "name": "firedev-typeorm",
-  "version": "13.1.7",
   "dependencies": {
     "@angular-devkit/build-angular": "~13.3.9",
     "@angular-devkit/core": "~13.3.9",
@@ -234,5 +232,6 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {},
-  "lastBuildTagHash": "6f7e5baa3efdaddaf3b2c18f530f598a751c4d2e"
+  "name": "firedev-typeorm",
+  "version": "13.1.7"
 }
