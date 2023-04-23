@@ -242,6 +242,6 @@
   },
   "devDependencies": {},
   "name": "firedev-typeorm",
-  "version": "13.1.19",
+  "version": "13.1.20",
   "lastBuildTagHash": "167e9435d96842eb63840f1b2021c3432029c20c"
 }
