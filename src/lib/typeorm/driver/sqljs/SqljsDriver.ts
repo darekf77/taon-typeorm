@@ -11,24 +11,33 @@ import { OrmUtils } from "../../util/OrmUtils"
 import { ObjectLiteral } from "../../common/ObjectLiteral"
 import { ReplicationMode } from "../types/ReplicationMode"
 import { TypeORMError } from "../../error"
+//#region @backend
+// @ts-ignore
+const window:any = global;
+//#endregion
 
-// This is needed to satisfy the typescript compiler.
-interface Window {
-    SQL: any
-    localforage: any
-}
-declare let window: Window
+
 
 export class SqljsDriver extends AbstractSqliteDriver {
     // The driver specific options.
-    options: SqljsConnectionOptions
+    options: SqljsConnectionOptions;
+    localForgeInstance: any;
 
     // -------------------------------------------------------------------------
     // Constructor
     // -------------------------------------------------------------------------
 
     constructor(connection: DataSource) {
-        super(connection)
+      super(connection)
+      //#region @browser
+      // @ts-ignore
+      const localForge = window['localforage'];
+      // @ts-ignore
+      this.localForgeInstance = localForge?.createInstance({
+        driver: localForge.INDEXEDDB,
+        storeName: 'firedev-typeorm',
+      })
+      //#endregion
 
         // If autoSave is enabled by user, location or autoSaveCallback have to be set
         // because either autoSave saves to location or calls autoSaveCallback.
@@ -105,8 +114,9 @@ export class SqljsDriver extends AbstractSqliteDriver {
                 // fileNameOrLocalStorageOrData should be a local storage / indexedDB key
                 let localStorageContent = null
                 if (this.options.useLocalForage) {
-                    if (window.localforage) {
-                        localStorageContent = await window.localforage.getItem(
+                    //#region @browser
+                    if (this.localForgeInstance) {
+                        localStorageContent = await this.localForgeInstance.getItem(
                             fileNameOrLocalStorageOrData,
                         )
                     } else {
@@ -114,6 +124,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
                             `localforage is not defined - please import localforage.js into your site`,
                         )
                     }
+                    //#endregion
                 } else {
                     localStorageContent =
                         PlatformTools.getGlobalVariable().localStorage.getItem(
@@ -177,8 +188,9 @@ export class SqljsDriver extends AbstractSqliteDriver {
             // convert Uint8Array to number array to improve local-storage storage
             const databaseArray = [].slice.call(database)
             if (this.options.useLocalForage) {
-                if (window.localforage) {
-                    await window.localforage.setItem(
+                //#region @browser
+                if (this.localForgeInstance) {
+                    await this.localForgeInstance.setItem(
                         path,
                         JSON.stringify(databaseArray),
                     )
@@ -187,6 +199,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
                         `localforage is not defined - please import localforage.js into your site`,
                     )
                 }
+                //#endregion
             } else {
                 PlatformTools.getGlobalVariable().localStorage.setItem(
                     path,
@@ -298,8 +311,11 @@ export class SqljsDriver extends AbstractSqliteDriver {
      */
     protected loadDependencies(): void {
         if (PlatformTools.type === "browser") {
-            const sqlite = this.options.driver || window.SQL // @ts-ignore
+            //#region @browser
+            // @ts-ignore
+            const sqlite = this.options.driver || window['SQL'] // @ts-ignore
             this.sqlite = sqlite
+            //#endregion
         } else {
             try {
                 const sqlite =
