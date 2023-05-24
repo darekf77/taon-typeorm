@@ -26,11 +26,12 @@ export class SqljsDriver extends AbstractSqliteDriver {
     localForgeInstance: any;
     databaseArrayFast = {};
     debounceSave = _.debounce(async (path)=> {
+      // console.log(`SAVING TO DB START `)
       await this.localForgeInstance.setItem(
         path,
-        JSON.stringify(this.databaseArrayFast[path]),
+        this.databaseArrayFast[path],
       );
-      console.log(`SAVING TO DB `)
+      // console.log(`SAVING TO DB DONE `)
     },SAVE_LOCAL_FORGE_TIMEOUT);
 
     // -------------------------------------------------------------------------
@@ -128,10 +129,12 @@ export class SqljsDriver extends AbstractSqliteDriver {
                     //#region @browser
                     if (this.localForgeInstance) {
                         if(_.isUndefined(this.databaseArrayFast[fileNameOrLocalStorageOrData])) {
+                          // console.log('load db start')
                           const content = await this.localForgeInstance.getItem(
                               fileNameOrLocalStorageOrData,
                           )
-                          this.databaseArrayFast[fileNameOrLocalStorageOrData] = JSON.parse(content);
+                          // console.log('load db done')
+                          this.databaseArrayFast[fileNameOrLocalStorageOrData] = content;
                         }
                         localStorageContent = this.databaseArrayFast[fileNameOrLocalStorageOrData];
 
@@ -150,9 +153,12 @@ export class SqljsDriver extends AbstractSqliteDriver {
 
                 if (localStorageContent != null) {
                     // localStorage value exists.
-                    return this.createDatabaseConnectionWithImport(
+                    // console.log('load connection start')
+                    const con = this.createDatabaseConnectionWithImport(
                       this.localForgeInstance ? localStorageContent : JSON.parse(localStorageContent),
                     )
+                    // console.log('load connection cone')
+                    return con;
                 } else if (checkIfFileOrLocalStorageExists) {
                     throw new TypeORMError(
                         `File ${fileNameOrLocalStorageOrData} does not exist`,
