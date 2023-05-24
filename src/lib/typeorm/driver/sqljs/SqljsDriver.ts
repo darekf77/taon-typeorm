@@ -11,17 +11,27 @@ import { OrmUtils } from "../../util/OrmUtils"
 import { ObjectLiteral } from "../../common/ObjectLiteral"
 import { ReplicationMode } from "../types/ReplicationMode"
 import { TypeORMError } from "../../error"
+import { _ } from 'tnp-core';
+
 //#region @backend
 // @ts-ignore
 const window:any = global;
 //#endregion
 
-
+const SAVE_LOCAL_FORGE_TIMEOUT = 500;
 
 export class SqljsDriver extends AbstractSqliteDriver {
     // The driver specific options.
     options: SqljsConnectionOptions;
     localForgeInstance: any;
+    databaseArrayFast = {};
+    debounceSave = _.debounce(async (path)=> {
+      await this.localForgeInstance.setItem(
+        path,
+        JSON.stringify(this.databaseArrayFast[path]),
+      );
+      console.log(`SAVING TO DB `)
+    },SAVE_LOCAL_FORGE_TIMEOUT);
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -81,6 +91,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
         return this.queryRunner
     }
 
+
     /**
      * Loads a database from a given file (Node.js), local storage key (browser) or array.
      * This will delete the current database!
@@ -116,9 +127,14 @@ export class SqljsDriver extends AbstractSqliteDriver {
                 if (this.options.useLocalForage) {
                     //#region @browser
                     if (this.localForgeInstance) {
-                        localStorageContent = await this.localForgeInstance.getItem(
-                            fileNameOrLocalStorageOrData,
-                        )
+                        if(_.isUndefined(this.databaseArrayFast[fileNameOrLocalStorageOrData])) {
+                          const content = await this.localForgeInstance.getItem(
+                              fileNameOrLocalStorageOrData,
+                          )
+                          this.databaseArrayFast[fileNameOrLocalStorageOrData] = JSON.parse(content);
+                        }
+                        localStorageContent = this.databaseArrayFast[fileNameOrLocalStorageOrData];
+
                     } else {
                         throw new TypeORMError(
                             `localforage is not defined - please import localforage.js into your site`,
@@ -135,7 +151,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
                 if (localStorageContent != null) {
                     // localStorage value exists.
                     return this.createDatabaseConnectionWithImport(
-                        JSON.parse(localStorageContent),
+                      this.localForgeInstance ? localStorageContent : JSON.parse(localStorageContent),
                     )
                 } else if (checkIfFileOrLocalStorageExists) {
                     throw new TypeORMError(
@@ -190,10 +206,12 @@ export class SqljsDriver extends AbstractSqliteDriver {
             if (this.options.useLocalForage) {
                 //#region @browser
                 if (this.localForgeInstance) {
-                    await this.localForgeInstance.setItem(
-                        path,
-                        JSON.stringify(databaseArray),
-                    )
+                    this.databaseArrayFast[path] = databaseArray;
+                    this.debounceSave(path);
+                    // await this.localForgeInstance.setItem(
+                    //     path,
+                    //     JSON.stringify(databaseArray),
+                    // )
                 } else {
                     throw new TypeORMError(
                         `localforage is not defined - please import localforage.js into your site`,

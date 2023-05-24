@@ -3,9 +3,11 @@
 
   overrided: {
     linkedFolders: [],
-    ignoreDepsPattern: ['*'],
+    ignoreDepsPattern: [],
     includeAsDev: [],
-    includeOnly: [],
+    includeOnly: [
+      'tnp-core'
+    ],
     dependencies: {}
   },
 
