@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "tnp-core": "~13.2.17"
+    "tnp-core": "~13.2.18"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.9",
@@ -135,7 +135,7 @@
     "http-proxy-middleware": "0.19.1",
     "http-server": "0.11.1",
     "immutable": "4.3.0",
-    "incremental-compiler": "~13.1.23",
+    "incremental-compiler": "~13.1.24",
     "inquirer": "7.3.3",
     "inquirer-autocomplete-prompt": "1.3.0",
     "is-elevated": "3.0.0",
@@ -145,7 +145,7 @@
     "jimp": "0.22.8",
     "jscodeshift": "0.6.3",
     "json-stringify-safe": "5.0.1",
-    "json10": "~13.1.42",
+    "json10": "~13.1.43",
     "json10-writer": "~13.1.38",
     "json5": "2.1.3",
     "json5-writer": "0.2.0",
@@ -160,7 +160,7 @@
     "localforage": "1.10.0",
     "lockfile": "1.0.4",
     "lodash": "4.17.4",
-    "lodash-walk-object": "~13.1.42",
+    "lodash-walk-object": "~13.1.43",
     "lowdb": "1.0.0",
     "magic-renamer": "~13.1.39",
     "material-design-icons": "3.0.1",
@@ -173,7 +173,7 @@
     "ng-in-viewport": "13.0.1",
     "ng-packagr": "13.0.0",
     "ng-talkback": "~13.1.19",
-    "ng2-logger": "~13.1.22",
+    "ng2-logger": "~13.1.23",
     "ng2-rest": "~13.2.6",
     "ngx-ace-wrapper": "12",
     "ngx-editor": "12.2.1",
@@ -215,13 +215,13 @@
     "socket.io": "2.4.1",
     "sort-package-json": "1.11.0",
     "sql.js": "1.8.0",
-    "static-columns": "~13.3.5",
+    "static-columns": "~13.3.6",
     "string-similarity": "4.0.2",
     "sudo-block": "3.0.0",
     "systeminformation": "3.45.7",
     "threads": "1.7.0",
-    "tnp-cli": "~13.1.57",
-    "tnp-config": "~13.1.73",
+    "tnp-cli": "~13.1.58",
+    "tnp-config": "~13.1.74",
     "tnp-db": "~13.1.19",
     "tnp-helpers": "~13.1.32",
     "tnp-models": "~13.1.25",
@@ -232,7 +232,7 @@
     "tslib": "~2.3.0",
     "typeorm": "~0.3.10",
     "typescript": "~4.6.2",
-    "typescript-class-helpers": "~13.2.10",
+    "typescript-class-helpers": "~13.2.11",
     "typescript-formatter": "~7.2.2",
     "underscore": "1.9.1",
     "uuid": "8.3.2",
@@ -244,6 +244,6 @@
     "zone.js": "~0.11.4"
   },
   "name": "firedev-typeorm",
-  "version": "13.1.29",
+  "version": "13.1.30",
   "lastBuildTagHash": "1ce3466570c65f6e16ddb6f99fa5c5284da4d2e8"
 }
