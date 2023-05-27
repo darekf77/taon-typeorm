@@ -19,7 +19,7 @@ const window:any = global;
 //#endregion
 
 
-const environment = {} as any;
+let environment = {} as any;
 //#region @backend
 // @ts-ignore
 environment = global['ENV'];
