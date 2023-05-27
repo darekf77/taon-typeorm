@@ -18,6 +18,18 @@ import { _ } from 'tnp-core';
 const window:any = global;
 //#endregion
 
+
+const environment = {} as any;
+//#region @backend
+// @ts-ignore
+environment = global['ENV'];
+//#endregion
+//#region @browser
+// @ts-ignore
+environment = window['ENV'];
+//#endregion
+
+
 const SAVE_LOCAL_FORGE_TIMEOUT = 500;
 
 export class SqljsDriver extends AbstractSqliteDriver {
@@ -46,7 +58,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
       // @ts-ignore
       this.localForgeInstance = localForge?.createInstance({
         driver: localForge.INDEXEDDB,
-        storeName: 'firedev-typeorm',
+        storeName: 'firedev-typeorm_' + _.kebabCase(environment?.currentProjectGenericName),
       })
       //#endregion
 
