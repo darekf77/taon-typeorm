@@ -5,10 +5,13 @@
     linkedFolders: [],
     ignoreDepsPattern: [],
     includeAsDev: [],
+
     includeOnly: [
       'tnp-core'
     ],
-    dependencies: {}
+
+    dependencies: {},
+    npmFixes: [],
   },
 
   linkedProjects: [],
