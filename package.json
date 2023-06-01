@@ -121,7 +121,7 @@
     "firedev-crud-deamon": "~13.1.38",
     "firedev-ports": "~13.1.42",
     "firedev-storage": "~13.2.35",
-    "firedev-typeorm": "~13.1.30",
+    "firedev-typeorm": "~13.1.31",
     "firedev-ui": "~13.2.7",
     "fkill": "6.1.0",
     "font-awesome": "4.7.0",
@@ -245,5 +245,5 @@
   },
   "name": "firedev-typeorm",
   "version": "13.1.31",
-  "lastBuildTagHash": "00576af683e7d7f4ffb61df36c6ca47605d0673c"
+  "lastBuildTagHash": "aaf916f661e573176c35da9e4fb71429bb5d0943"
 }
