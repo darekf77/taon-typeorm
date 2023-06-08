@@ -39,7 +39,7 @@
 
   smartContainerTarget: '',
   type: 'isomorphic-lib',
-  version: 'v3',
+  version: 'v16',
   isCoreProject: false,
   isGenerated: false,
   useFramework: false,
