@@ -305,7 +305,7 @@ export class PlatformTools {
   }
 
   // @ts-ignore
-  static readFileSync(filename: string): Buffer {
+  static readFileSync(filename: string): any { // Buffer
     //#region @backendFunc
     return fs.readFileSync(filename)
     //#endregion
