@@ -1,4 +1,48 @@
 {
+  "tnp": {
+    "resources": [],
+    "overrided": {
+      "linkedFolders": [],
+      "ignoreDepsPattern": [],
+      "includeAsDev": [],
+      "includeOnly": [
+        "tnp-core"
+      ],
+      "dependencies": {},
+      "npmFixes": []
+    },
+    "linkedProjects": [],
+    "smartContainerBuildTarget": "",
+    "linkedRepos": [
+      {
+        "origin": "git@github.com:darekf77/typeorm.git",
+        "relativeFoldersLinks": [
+          {
+            "from": "src",
+            "to": "src/lib/typeorm"
+          },
+          {
+            "from": "",
+            "to": ""
+          }
+        ]
+      }
+    ],
+    "libReleaseOptions": {
+      "nodts": false,
+      "obscure": false,
+      "ugly": false,
+      "includeNodeModules": false
+    },
+    "smartContainerTarget": "",
+    "type": "isomorphic-lib",
+    "version": "v4",
+    "isCoreProject": false,
+    "isGenerated": false,
+    "useFramework": false,
+    "required": [],
+    "requiredServers": []
+  },
   "dependencies": {
     "tnp-core": "~16.0.8"
   },
