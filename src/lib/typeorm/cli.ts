@@ -17,7 +17,7 @@ import { VersionCommand } from "./commands/VersionCommand"
 import { InitCommand } from "./commands/InitCommand"
 import { CacheClearCommand } from "./commands/CacheClearCommand"
 
-yargs
+yargs // @ts-ignore
     .usage("Usage: $0 <command> [options]")
     .command(new SchemaSyncCommand())
     .command(new SchemaLogCommand())

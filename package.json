@@ -309,6 +309,6 @@
     "zone.js": "~0.13.0"
   },
   "name": "firedev-typeorm",
-  "version": "16.0.38",
+  "version": "16.0.39",
   "lastBuildTagHash": "40c95fa41f3116cac7dc38a281cead1dcfcb1ded"
 }
