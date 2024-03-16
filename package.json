@@ -181,7 +181,7 @@
     "firedev-ports": "~16.5.15",
     "firedev-storage": "~16.5.13",
     "firedev-type-sql": "~16.5.13",
-    "firedev-typeorm": "~16.5.14",
+    "firedev-typeorm": "~16.5.15",
     "firedev-ui": "~16.5.12",
     "fkill": "6.1.0",
     "font-awesome": "4.7.0",
@@ -325,5 +325,5 @@
   },
   "name": "firedev-typeorm",
   "version": "16.5.15",
-  "lastBuildTagHash": "991022bded9dc8965cbe6d9c6821a92c862175dc"
+  "lastBuildTagHash": "21488404ab15a871571cc7b72c840eebdbc73ca6"
 }
