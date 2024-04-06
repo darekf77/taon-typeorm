@@ -35,7 +35,8 @@
       "includeNodeModules": false,
       "cliBuildNoDts": false,
       "cliBuildObscure": false,
-      "cliBuildIncludeNodeModules": false
+      "cliBuildIncludeNodeModules": false,
+      "cliBuildUglify": false
     },
     "smartContainerTarget": "",
     "type": "isomorphic-lib",
@@ -328,5 +329,6 @@
   },
   "name": "firedev-typeorm",
   "version": "16.5.16",
-  "lastBuildTagHash": "571448aa27e75e5de3da762daae16c8553d31750"
+  "lastBuildTagHash": "571448aa27e75e5de3da762daae16c8553d31750",
+  "main": "dist/app.electron.js"
 }
