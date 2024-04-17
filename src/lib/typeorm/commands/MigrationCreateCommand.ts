@@ -69,7 +69,7 @@ export class MigrationCreateCommand implements yargs.CommandModule {
      * Gets contents of the migration file.
      */
     protected static getTemplate(name: string, timestamp: number): string {
-        return `import { MigrationInterface, QueryRunner } from "typeorm"
+        return `import { MigrationInterface, QueryRunner } from "firedev-typeorm"
 
 export class ${camelCase(
             name,
@@ -93,7 +93,7 @@ export class ${camelCase(
         name: string,
         timestamp: number,
     ): string {
-        return `const { MigrationInterface, QueryRunner } = require("typeorm");
+        return `const { MigrationInterface, QueryRunner } = require("firedev-typeorm");
 
 module.exports = class ${camelCase(name, true)}${timestamp} {
 

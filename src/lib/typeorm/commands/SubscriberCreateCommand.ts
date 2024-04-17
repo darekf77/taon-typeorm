@@ -44,7 +44,7 @@ export class SubscriberCreateCommand implements yargs.CommandModule {
      * Gets contents of the entity file.
      */
     protected static getTemplate(name: string): string {
-        return `import { EventSubscriber, EntitySubscriberInterface } from "typeorm"
+        return `import { EventSubscriber, EntitySubscriberInterface } from "firedev-typeorm"
 
 @EventSubscriber()
 export class ${name} implements EntitySubscriberInterface {

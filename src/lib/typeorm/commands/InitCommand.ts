@@ -242,7 +242,7 @@ sid: "xe.oracle.docker",`
                 break
         }
         return `import "reflect-metadata"
-import { DataSource } from "typeorm"
+import { DataSource } from "firedev-typeorm"
 import { User } from "./entity/User${isEsm ? ".js" : ""}"
 
 export const AppDataSource = new DataSource({
@@ -317,7 +317,7 @@ temp/`
             database === "mongodb"
                 ? "ObjectIdColumn, ObjectID"
                 : "PrimaryGeneratedColumn"
-        }, Column } from "typeorm"
+        }, Column } from "firedev-typeorm"
 
 @Entity()
 export class User {
@@ -377,7 +377,7 @@ export const Routes = [{
      * Gets contents of the user controller file (used when express is enabled).
      */
     protected static getControllerTemplate(isEsm: boolean): string {
-        return `import { getRepository } from "typeorm"
+        return `import { getRepository } from "firedev-typeorm"
 import { NextFunction, Request, Response } from "express"
 import { User } from "../entity/User${isEsm ? ".js" : ""}"
 
