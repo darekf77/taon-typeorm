@@ -1,51 +1,44 @@
 {
-  resources: [],
-
-  overrided: {
-    linkedFolders: [],
-    ignoreDepsPattern: [],
-    includeAsDev: [],
-
-    includeOnly: [
+  "resources": [],
+  "overrided": {
+    "linkedFolders": [],
+    "ignoreDepsPattern": [],
+    "includeAsDev": [],
+    "includeOnly": [
       'tnp-core'
     ],
-
-    dependencies: {},
-    npmFixes: [],
+    "dependencies": {},
+    "npmFixes": [],
   },
-
-  smartContainerBuildTarget: '',
-
-  linkedRepos: [
+  "smartContainerBuildTarget": '',
+  "linkedRepos": [
     {
-      origin: 'git@github.com:darekf77/typeorm.git',
-      relativeFoldersLinks: [{
-        from: 'src',
-        to: 'src/lib/typeorm',
+      "origin": 'git@github.com:darekf77/typeorm.git',
+      "relativeFoldersLinks": [{
+        "from": 'src',
+        "to": 'src/lib/typeorm',
       }, {
-        from: '',
-        to: '',
+        "from": '',
+        "to": '',
       }]
     }
   ],
-
-  libReleaseOptions: {
-    nodts: false,
-    obscure: false,
-    ugly: false,
-    includeNodeModules: false,
-    cliBuildNoDts: false,
-    cliBuildObscure: false,
-    cliBuildIncludeNodeModules: false,
-    cliBuildUglify: false,
+  "libReleaseOptions": {
+    "nodts": false,
+    "obscure": false,
+    "ugly": false,
+    "includeNodeModules": false,
+    "cliBuildNoDts": false,
+    "cliBuildObscure": false,
+    "cliBuildIncludeNodeModules": false,
+    "cliBuildUglify": false,
   },
-
-  smartContainerTarget: '',
-  type: 'isomorphic-lib',
-  version: 'v4',
-  isCoreProject: false,
-  isGenerated: false,
-  useFramework: false,
-  required: [],
-  requiredServers: [],
+  "smartContainerTarget": '',
+  "type": 'isomorphic-lib',
+  "version": 'v4',
+  "isCoreProject": false,
+  "isGenerated": false,
+  "useFramework": false,
+  "required": [],
+  "requiredServers": [],
 }
