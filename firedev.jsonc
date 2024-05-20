@@ -5,21 +5,21 @@
     "ignoreDepsPattern": [],
     "includeAsDev": [],
     "includeOnly": [
-      'tnp-core'
+      "tnp-core"
     ],
     "dependencies": {},
     "npmFixes": [],
   },
-  "smartContainerBuildTarget": '',
+  "smartContainerBuildTarget": "",
   "linkedRepos": [
     {
-      "origin": 'git@github.com:darekf77/typeorm.git',
+      "origin": "git@github.com:darekf77/typeorm.git",
       "relativeFoldersLinks": [{
-        "from": 'src',
-        "to": 'src/lib/typeorm',
+        "from": "src",
+        "to": "src/lib/typeorm",
       }, {
-        "from": '',
-        "to": '',
+        "from": "",
+        "to": "",
       }]
     }
   ],
@@ -33,9 +33,9 @@
     "cliBuildIncludeNodeModules": false,
     "cliBuildUglify": false,
   },
-  "smartContainerTarget": '',
-  "type": 'isomorphic-lib',
-  "version": 'v4',
+  "smartContainerTarget": "",
+  "type": "isomorphic-lib",
+  "version": "v4",
   "isCoreProject": false,
   "isGenerated": false,
   "useFramework": false,
