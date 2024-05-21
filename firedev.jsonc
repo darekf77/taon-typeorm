@@ -4,9 +4,7 @@
     "linkedFolders": [],
     "ignoreDepsPattern": [],
     "includeAsDev": [],
-    "includeOnly": [
-      "tnp-core"
-    ],
+    "includeOnly": ["tnp-core"],
     "dependencies": {},
     "npmFixes": [],
   },
