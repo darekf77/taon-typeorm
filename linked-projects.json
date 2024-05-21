@@ -1,3 +1,9 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "relativeClonePath": "linked-repos/typeorm",
+      "repoUrl": "https://github.com/darekf77/typeorm.git",
+      "deafultBranch": "master"
+    }
+  ]
 }
