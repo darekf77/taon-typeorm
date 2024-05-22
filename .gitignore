@@ -64,6 +64,12 @@ Thumbs.db
 /tsconfig.json.filetemplate
 /tsconfig.backend.dist.json.filetemplate
 /tsconfig.backend.dist.json
+# container/workspace git projects
+# PREFIX
+/*
+# LINKED PROJECTS
+/linked-repos/typeorm
+
 # =====================
 !firedev.json
 !firedev.jsonc
