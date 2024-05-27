@@ -4,23 +4,17 @@
     "linkedFolders": [],
     "ignoreDepsPattern": [],
     "includeAsDev": [],
-    "includeOnly": ["tnp-core"],
+    "includeOnly": [
+      "tnp-core",
+      "cli-highlight",
+      "@sqltools/formatter",
+      "app-root-path",
+    ],
     "dependencies": {},
     "npmFixes": [],
   },
   "smartContainerBuildTarget": "",
-  "linkedRepos": [
-    {
-      "origin": "git@github.com:darekf77/typeorm.git",
-      "relativeFoldersLinks": [{
-        "from": "src",
-        "to": "src/lib/typeorm",
-      }, {
-        "from": "",
-        "to": "",
-      }]
-    }
-  ],
+  "linkedRepos": [],
   "libReleaseOptions": {
     "nodts": false,
     "obscure": false,
