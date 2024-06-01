@@ -37,6 +37,10 @@ Thumbs.db
 /backup
 /module
 /www
+/.eslintrc.json
+/.prettierignore
+/.prettierrc
+/.editorconfig
 /Thumbs.db
 /.DS_Store
 /**/.DS_Store
@@ -48,9 +52,6 @@ Thumbs.db
 /tsconfig.browser.json
 /tsconfig.json
 /tsconfig.backend.dist.json
-/.npmrc
-/tslint.json
-/.editorconfig
 /index.js
 /index.d.ts
 /index.js.map
@@ -64,12 +65,6 @@ Thumbs.db
 /tsconfig.json.filetemplate
 /tsconfig.backend.dist.json.filetemplate
 /tsconfig.backend.dist.json
-# container/workspace git projects
-# PREFIX
-/*
-# LINKED PROJECTS
-/linked-repos/typeorm
-
 # =====================
 !firedev.json
 !firedev.jsonc
