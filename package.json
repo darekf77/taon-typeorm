@@ -336,7 +336,7 @@
     "zone.js": "~0.13.0"
   },
   "name": "firedev-typeorm",
-  "version": "16.444.2",
+  "version": "16.444.3",
   "lastBuildTagHash": "2cb5e43465a27b3fabcca7156886ab999754087c",
   "main": "dist/app.electron.js"
 }
