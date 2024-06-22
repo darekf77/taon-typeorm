@@ -31,6 +31,7 @@ export function Entity(
         typeof nameOrOptions === "string" ? nameOrOptions : options.name
 
     return function (target) {
+        // debugger
         getMetadataArgsStorage().tables.push({
             target: target,
             name: name,

@@ -27,7 +27,7 @@ import { OracleDriver } from "../driver/oracle/OracleDriver"
 //#endregion
 import { InstanceChecker } from "../util/InstanceChecker"
 import { escapeRegExp } from "../util/escapeRegExp"
-import { CLASS } from "typescript-class-helpers"
+import { CLASS } from "typescript-class-helpers/src"
 
 // todo: completely cover query builder with tests
 // todo: entityOrProperty can be target name. implement proper behaviour if it is.

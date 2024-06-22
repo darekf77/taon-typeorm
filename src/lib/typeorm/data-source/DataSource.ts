@@ -47,6 +47,7 @@ import { RelationIdLoader } from "../query-builder/RelationIdLoader"
 import { DriverUtils } from "../driver/DriverUtils"
 import { InstanceChecker } from "../util/InstanceChecker"
 import { ObjectLiteral } from "../common/ObjectLiteral"
+import { OrignalClassKey } from "../globals"
 
 /**
  * DataSource is a pre-defined connection configuration to a specific database.
@@ -439,7 +440,8 @@ export class DataSource {
      * Gets entity metadata for the given entity class or schema name.
      */
     getMetadata(target: EntityTarget<any>): EntityMetadata {
-        const metadata = this.findMetadata(target)
+        let metadata = this.findMetadata(target);
+        metadata = metadata || this.findMetadata(target[OrignalClassKey]);
         if (!metadata) {throw new EntityMetadataNotFoundError(target);}
 
         return metadata

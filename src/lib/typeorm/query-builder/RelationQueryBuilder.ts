@@ -4,7 +4,7 @@ import { RelationRemover } from "./RelationRemover"
 import { TypeORMError } from "../error"
 import { ObjectUtils } from "../util/ObjectUtils"
 import { ObjectLiteral } from "../common/ObjectLiteral"
-import { CLASS } from "typescript-class-helpers"
+import { CLASS } from "typescript-class-helpers/src"
 
 /**
  * Allows to work with entity relations and perform specific operations with those relations.

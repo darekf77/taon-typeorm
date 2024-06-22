@@ -8,7 +8,7 @@ import { Brackets } from "./Brackets"
 import { DeleteResult } from "./result/DeleteResult"
 import { ReturningStatementNotSupportedError } from "../error/ReturningStatementNotSupportedError"
 import { InstanceChecker } from "../util/InstanceChecker"
-import { CLASS } from "typescript-class-helpers"
+import { CLASS } from "typescript-class-helpers/src"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.

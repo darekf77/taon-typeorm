@@ -15,7 +15,7 @@ import { UpdateValuesMissingError } from "../error/UpdateValuesMissingError"
 import { TypeORMError } from "../error"
 import { DriverUtils } from "../driver/DriverUtils"
 import { InstanceChecker } from "../util/InstanceChecker"
-import { CLASS } from "typescript-class-helpers"
+import { CLASS } from "typescript-class-helpers/src"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.

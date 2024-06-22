@@ -24,7 +24,7 @@ import { EntityPropertyNotFoundError } from "../error/EntityPropertyNotFoundErro
 import { SqlServerDriver } from "../driver/sqlserver/SqlServerDriver"
 //#endregion
 import { DriverUtils } from "../driver/DriverUtils"
-import { CLASS } from "typescript-class-helpers"
+import { CLASS } from "typescript-class-helpers/src"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.

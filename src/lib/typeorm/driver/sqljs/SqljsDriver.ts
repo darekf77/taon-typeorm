@@ -11,7 +11,7 @@ import { OrmUtils } from "../../util/OrmUtils"
 import { ObjectLiteral } from "../../common/ObjectLiteral"
 import { ReplicationMode } from "../types/ReplicationMode"
 import { TypeORMError } from "../../error"
-import { _ } from 'tnp-core';
+import { _ } from 'tnp-core/src';
 
 //#region @backend
 // @ts-ignore

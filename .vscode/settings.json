@@ -50,8 +50,8 @@
     "logo.svg": true
   },
   "workbench.colorCustomizations": {
-    "activityBar.background": "#0084ff",
-    "activityBar.foreground": "#000000"
+    "activityBar.background": "#1488ee",
+    "activityBar.foreground": "#f10303"
   },
   "editor.rulers": [
     80,
@@ -105,5 +105,6 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.inlineSuggest.enabled": true,
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
-  "prettier.endOfLine": "auto"
+  "prettier.endOfLine": "auto",
+  "prettier.prettierPath": "./node_modules/prettier"
 }
