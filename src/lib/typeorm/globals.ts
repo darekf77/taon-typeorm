@@ -252,5 +252,3 @@ export function createQueryBuilder<Entity extends ObjectLiteral>(
 
     return getConnection(connectionName).createQueryBuilder()
 }
-
-export const OrignalClassKey = '$$originalClass$$';

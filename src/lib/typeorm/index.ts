@@ -1,4 +1,4 @@
-export { OrignalClassKey } from './globals';
+export { OrignalClassKey } from './constants';
 //#region @backend
 import 'reflect-metadata';
 //#endregion
