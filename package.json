@@ -299,7 +299,7 @@
     "socket.io": "2.4.1",
     "sort-package-json": "1.11.0",
     "sql.js": "1.8.0",
-    "static-columns": "16.444.1",
+    "static-columns": "16.444.3",
     "string-similarity": "4.0.2",
     "sudo-block": "3.0.0",
     "supertest": "6.3.3",
