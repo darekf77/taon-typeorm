@@ -1,20 +1,18 @@
 {
   "resources": [],
+
   "overrided": {
     "linkedFolders": [],
     "ignoreDepsPattern": [],
     "includeAsDev": [],
-    "includeOnly": [
-      "tnp-core",
-      "cli-highlight",
-      "@sqltools/formatter",
-      "app-root-path",
-    ],
+    "includeOnly": ["tnp-core", "cli-highlight", "@sqltools/formatter", "app-root-path"],
     "dependencies": {},
-    "npmFixes": [],
+    "npmFixes": []
   },
+
   "smartContainerBuildTarget": "",
   "linkedRepos": [],
+
   "libReleaseOptions": {
     "nodts": false,
     "obscure": false,
@@ -23,14 +21,15 @@
     "cliBuildNoDts": false,
     "cliBuildObscure": false,
     "cliBuildIncludeNodeModules": false,
-    "cliBuildUglify": false,
+    "cliBuildUglify": false
   },
+
   "smartContainerTarget": "",
   "type": "isomorphic-lib",
-  "version": "v16",
+  "version": "v18",
   "isCoreProject": false,
   "isGenerated": false,
   "useFramework": false,
   "required": [],
-  "requiredServers": [],
+  "requiredServers": []
 }
