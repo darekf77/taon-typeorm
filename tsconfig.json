@@ -4,10 +4,10 @@
     "strictNullChecks": false,
     "rootDir": "./src",
     "paths": {
-      "firedev-typeorm": [
+      "taon-typeorm": [
         "./src/lib"
       ],
-      "firedev-typeorm/*": [
+      "taon-typeorm/*": [
         "./src/lib/*"
       ]
     }
