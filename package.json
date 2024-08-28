@@ -338,7 +338,7 @@
     "zone.js": "~0.13.0"
   },
   "name": "taon-typeorm",
-  "version": "18.0.6",
+  "version": "18.0.7",
   "lastBuildTagHash": "f910f0c8a7887486ce2c7de99a81194a65c0cd92",
   "main": "dist/app.electron.js"
 }
