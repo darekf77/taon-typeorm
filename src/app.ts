@@ -9,7 +9,7 @@
       selector: 'app-firedev-typeorm',
       template: 'hello from firedev-typeorm'
     })
-    export class FiredevTypeormComponent implements OnInit {
+    export class TaonTypeormComponent implements OnInit {
       constructor() { }
 
       ngOnInit() { }
@@ -17,11 +17,11 @@
 
     @NgModule({
       imports: [],
-      exports: [FiredevTypeormComponent],
-      declarations: [FiredevTypeormComponent],
+      exports: [TaonTypeormComponent],
+      declarations: [TaonTypeormComponent],
       providers: [],
     })
-    export class FiredevTypeormModule { }
+    export class TaonTypeormModule { }
     //#endregion
 
     //#region @backend
