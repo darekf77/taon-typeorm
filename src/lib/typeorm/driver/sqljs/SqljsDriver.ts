@@ -253,7 +253,11 @@ export class SqljsDriver extends AbstractSqliteDriver {
      * Don't auto-save when in transaction as the call to export will end the current transaction
      */
     async autoSave() {
-        if (this.options.autoSave && !this.queryRunner?.isTransactionActive) {
+        if (this.options.autoSave
+          // && !this.queryRunner?.isTransactionActive // TODO @LAST UNCOMMENT
+          // TYPEORM BUG WHEN DEALING WITH TRANSACTIONS
+
+        ) {
             if (this.options.autoSaveCallback) {
                 await this.options.autoSaveCallback(this.export())
             } else {
