@@ -31,5 +31,6 @@
   "isGenerated": false,
   "useFramework": false,
   "required": [],
-  "requiredServers": []
+  "requiredServers": [],
+  "packageJsonOverride": {}
 }

@@ -33,7 +33,8 @@
     "isGenerated": false,
     "useFramework": false,
     "required": [],
-    "requiredServers": []
+    "requiredServers": [],
+    "packageJsonOverride": {}
   },
   "dependencies": {
     "@sqltools/formatter": "1.2.5",
