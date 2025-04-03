@@ -13,7 +13,7 @@ export class CapacitorQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: CapacitorDriver
+    declare driver: CapacitorDriver
 
     // -------------------------------------------------------------------------
     // Constructor

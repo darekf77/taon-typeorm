@@ -8,7 +8,7 @@ import { ReplicationMode } from "../types/ReplicationMode"
 import { QueryResult } from "../../query-runner/QueryResult"
 
 class PostgresQueryRunnerWrapper extends PostgresQueryRunner {
-    driver: any
+    declare driver: any
 
     constructor(driver: any, mode: ReplicationMode) {
         super(driver, mode)
@@ -29,7 +29,7 @@ export class AuroraPostgresQueryRunner
     /**
      * Database driver used by connection.
      */
-    driver: AuroraPostgresDriver
+    declare driver: AuroraPostgresDriver
 
     protected client: any
 
@@ -40,7 +40,7 @@ export class AuroraPostgresQueryRunner
     /**
      * Promise used to obtain a database connection for a first time.
      */
-    protected databaseConnectionPromise: Promise<any>
+    declare protected databaseConnectionPromise: Promise<any>
 
     // -------------------------------------------------------------------------
     // Constructor

@@ -13,7 +13,7 @@ export class NativescriptQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: NativescriptDriver
+    declare driver: NativescriptDriver
 
     // -------------------------------------------------------------------------
     // Constructor

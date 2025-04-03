@@ -17,7 +17,7 @@ export class SqljsQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: SqljsDriver
+    declare driver: SqljsDriver
 
     // -------------------------------------------------------------------------
     // Constructor

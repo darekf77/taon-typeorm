@@ -32,7 +32,7 @@ export class ExpoQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: ExpoDriver
+    declare driver: ExpoDriver
 
     /**
      * Database transaction object

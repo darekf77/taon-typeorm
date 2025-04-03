@@ -7,7 +7,7 @@ import { DriverOptionNotSetError } from "../../error/DriverOptionNotSetError"
 import { ReplicationMode } from "../types/ReplicationMode"
 
 export class ExpoDriver extends AbstractSqliteDriver {
-    options: ExpoConnectionOptions
+    declare options: ExpoConnectionOptions
 
     // -------------------------------------------------------------------------
     // Constructor

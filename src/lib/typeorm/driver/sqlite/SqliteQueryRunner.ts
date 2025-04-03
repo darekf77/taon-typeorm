@@ -17,7 +17,7 @@ export class SqliteQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: SqliteDriver
+    declare driver: SqliteDriver
 
     // -------------------------------------------------------------------------
     // Constructor
