@@ -1,10 +1,15 @@
 {
   "type": "isomorphic-lib",
   "version": "v18",
-  "dependenciesNamesForNpmLib": ["tnp-core", "cli-highlight", "@sqltools/formatter", "app-root-path"],
+  "dependenciesNamesForNpmLib": [
+    "tnp-core",
+    "cli-highlight",
+    "@sqltools/formatter",
+    "app-root-path",
+  ],
   "isCoreProject": false,
   "resources": [],
   "packageJsonOverride": {
-    "author": "Dariusz Filipiak"
-  }
+    "author": "Dariusz Filipiak",
+  },
 }
