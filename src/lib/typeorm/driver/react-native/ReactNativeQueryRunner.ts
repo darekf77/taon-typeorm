@@ -13,7 +13,7 @@ export class ReactNativeQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: ReactNativeDriver
+    declare driver: ReactNativeDriver
 
     // -------------------------------------------------------------------------
     // Constructor

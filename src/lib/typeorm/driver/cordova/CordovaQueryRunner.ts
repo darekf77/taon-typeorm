@@ -14,7 +14,7 @@ export class CordovaQueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: CordovaDriver
+    declare driver: CordovaDriver
 
     // -------------------------------------------------------------------------
     // Constructor

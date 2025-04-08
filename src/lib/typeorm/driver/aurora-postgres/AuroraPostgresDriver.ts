@@ -10,7 +10,7 @@ import { ApplyValueTransformers } from "../../util/ApplyValueTransformers"
 import { DriverUtils } from "../DriverUtils"
 
 abstract class PostgresWrapper extends PostgresDriver {
-    options: any
+    declare options: any
 
     abstract createQueryRunner(mode: ReplicationMode): any
 }
@@ -23,7 +23,7 @@ export class AuroraPostgresDriver extends PostgresWrapper implements Driver {
     /**
      * Connection used by driver.
      */
-    connection: DataSource
+    declare connection: DataSource
 
     /**
      * Aurora Data API underlying library.
@@ -44,12 +44,12 @@ export class AuroraPostgresDriver extends PostgresWrapper implements Driver {
     /**
      * Connection options.
      */
-    options: AuroraPostgresConnectionOptions
+    declare options: AuroraPostgresConnectionOptions
 
     /**
      * Master database used to perform all write queries.
      */
-    database?: string
+    declare database?: string
 
     // -------------------------------------------------------------------------
     // Constructor

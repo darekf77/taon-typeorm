@@ -53,7 +53,7 @@ export class MongoRepository<
     /**
      * Entity Manager used by this repository.
      */
-    readonly manager: MongoEntityManager
+    declare readonly manager: MongoEntityManager
 
     // -------------------------------------------------------------------------
     // Overridden Methods

@@ -23,12 +23,12 @@ export class SqliteDriver extends AbstractSqliteDriver {
     /**
      * Connection options.
      */
-    options: SqliteConnectionOptions
+    declare options: SqliteConnectionOptions
 
     /**
      * SQLite underlying library.
      */
-    sqlite: any
+    declare sqlite: any
 
     // -------------------------------------------------------------------------
     // Constructor

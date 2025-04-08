@@ -1,35 +1,22 @@
 {
-  "resources": [],
-
-  "overrided": {
-    "linkedFolders": [],
-    "ignoreDepsPattern": [],
-    "includeAsDev": [],
-    "includeOnly": ["tnp-core", "cli-highlight", "@sqltools/formatter", "app-root-path"],
-    "dependencies": {},
-    "npmFixes": []
-  },
-
-  "smartContainerBuildTarget": "",
-  "linkedRepos": [],
-
-  "libReleaseOptions": {
-    "nodts": false,
-    "obscure": false,
-    "ugly": false,
-    "includeNodeModules": false,
-    "cliBuildNoDts": false,
-    "cliBuildObscure": false,
-    "cliBuildIncludeNodeModules": false,
-    "cliBuildUglify": false
-  },
-
-  "smartContainerTarget": "",
   "type": "isomorphic-lib",
   "version": "v18",
+
+  "dependenciesNamesForNpmLib": [
+    "tnp-core",
+    "cli-highlight",
+    "@sqltools/formatter",
+    "app-root-path",
+  ],
+
+  "autoReleaseConfigAllowedItems": [{
+    "artifactName": "npm-lib-and-cli-tool"
+  }],
+
   "isCoreProject": false,
-  "isGenerated": false,
-  "useFramework": false,
-  "required": [],
-  "requiredServers": []
+  "resources": [],
+
+  "packageJsonOverride": {
+    "author": "Dariusz Filipiak",
+  }
 }

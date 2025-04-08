@@ -34,7 +34,7 @@ const SAVE_LOCAL_FORGE_TIMEOUT = 500;
 
 export class SqljsDriver extends AbstractSqliteDriver {
     // The driver specific options.
-    options: SqljsConnectionOptions;
+    declare options: SqljsConnectionOptions;
     localForgeInstance: any;
     databaseArrayFast = {};
     debounceSave = _.debounce(async (path)=> {

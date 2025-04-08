@@ -24,12 +24,12 @@ export class BetterSqlite3Driver extends AbstractSqliteDriver {
     /**
      * Connection options.
      */
-    options: BetterSqlite3ConnectionOptions
+    declare options: BetterSqlite3ConnectionOptions
 
     /**
      * SQLite underlying library.
      */
-    sqlite: any
+    declare sqlite: any
 
     // -------------------------------------------------------------------------
     // Constructor

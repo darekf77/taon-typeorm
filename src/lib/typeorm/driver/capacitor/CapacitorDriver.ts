@@ -11,7 +11,7 @@ import { ReplicationMode } from "../types/ReplicationMode"
 
 export class CapacitorDriver extends AbstractSqliteDriver {
     driver: any
-    options: CapacitorConnectionOptions
+    declare options: CapacitorConnectionOptions
 
     // -------------------------------------------------------------------------
     // Constructor

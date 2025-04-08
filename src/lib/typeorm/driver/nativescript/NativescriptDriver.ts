@@ -19,7 +19,7 @@ export class NativescriptDriver extends AbstractSqliteDriver {
     /**
      * Connection options.
      */
-    options: NativescriptConnectionOptions
+    declare options: NativescriptConnectionOptions
 
     /**
      * Nativescript driver module

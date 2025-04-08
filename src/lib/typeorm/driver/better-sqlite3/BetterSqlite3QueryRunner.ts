@@ -16,7 +16,7 @@ export class BetterSqlite3QueryRunner extends AbstractSqliteQueryRunner {
     /**
      * Database driver used by connection.
      */
-    driver: BetterSqlite3Driver
+    declare driver: BetterSqlite3Driver
 
     // -------------------------------------------------------------------------
     // Constructor

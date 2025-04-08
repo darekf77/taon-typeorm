@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 //#region @backend
-import "reflect-metadata"
 import yargs from "yargs"
 import { SchemaSyncCommand } from "./commands/SchemaSyncCommand"
 import { SchemaDropCommand } from "./commands/SchemaDropCommand"
