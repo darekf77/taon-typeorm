@@ -4,10 +4,16 @@
     "strictNullChecks": false,
     "rootDir": "./src",
     "paths": {
-      "taon-typeorm": [
+      "@lib": [
         "./src/lib"
       ],
-      "taon-typeorm/*": [
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "taon-typeorm/src": [
+        "./src/lib"
+      ],
+      "taon-typeorm/src/*": [
         "./src/lib/*"
       ]
     }
