@@ -9,6 +9,7 @@ import {
     FindOptionsRelations,
 } from "./FindOptionsRelations"
 import { FindOptionsOrder } from "./FindOptionsOrder"
+import { RelationPath } from "../relation-path"
 
 /**
  * Defines a special criteria to find specific entity.
@@ -34,7 +35,7 @@ export interface FindOneOptions<Entity = any> {
     /**
      * Indicates what relations of entity should be loaded (simplified left join form).
      */
-    relations?: FindOptionsRelations<Entity> | FindOptionsRelationByString
+    relations?: RelationPath<Entity>[] | FindOptionsRelations<Entity> | FindOptionsRelationByString
 
     /**
      * Specifies how relations must be loaded - using "joins" or separate queries.

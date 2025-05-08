@@ -8,6 +8,7 @@ export * from './globals';
 //#region @backend
 export * from './container';
 //#endregion
+export * from './relation-path';
 export * from './common/EntityTarget';
 export * from './common/ObjectType';
 export * from './common/ObjectLiteral';

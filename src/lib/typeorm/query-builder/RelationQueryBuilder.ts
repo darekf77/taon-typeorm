@@ -73,6 +73,7 @@ export class RelationQueryBuilder<
                 `Value to be set into the relation must be a map of relation ids, for example: .set({ firstName: "...", lastName: "..." })`,
             )
 
+            // @ts-ignore
         const updater = new RelationUpdater(this, this.expressionMap)
         return updater.update(value)
     }
@@ -113,6 +114,7 @@ export class RelationQueryBuilder<
                 `Value to be set into the relation must be a map of relation ids, for example: .set({ firstName: "...", lastName: "..." })`,
             )
 
+        // @ts-ignore
         const updater = new RelationUpdater(this, this.expressionMap)
         return updater.update(value)
     }
@@ -142,6 +144,7 @@ export class RelationQueryBuilder<
                     `Use .set(null) method instead.`,
             )
 
+            // @ts-ignore
         const remover = new RelationRemover(this, this.expressionMap)
         return remover.remove(value)
     }

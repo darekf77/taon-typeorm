@@ -50,6 +50,7 @@ import { AuroraMysqlDriver } from "../driver/aurora-mysql/AuroraMysqlDriver"
 //#endregion
 import { InstanceChecker } from "../util/InstanceChecker"
 import { CLASS } from "typescript-class-helpers/src"
+import { RelationPath } from "../relation-path"
 
 /**
  * Allows to build complex sql queries in a fashion way and execute those queries.
@@ -118,6 +119,7 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
     subQuery(): SelectQueryBuilder<any> {
         const qb = this.createQueryBuilder()
         qb.expressionMap.subQuery = true
+        // @ts-ignore
         qb.parentQueryBuilder = this
         return qb
     }
@@ -493,6 +495,14 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
         parameters?: ObjectLiteral,
     ): this
 
+    // @ts-ignore
+    innerJoinAndSelect(
+      property: RelationPath<Entity>,
+      alias: string,
+      condition?: string,
+      parameters?: ObjectLiteral,
+  ): this
+
     /**
      * INNER JOINs entity and adds all selection properties to SELECT.
      * You also need to specify an alias of the joined data.
@@ -563,6 +573,14 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
         parameters?: ObjectLiteral,
     ): this
 
+    // @ts-ignore
+    leftJoinAndSelect(
+      property: RelationPath<Entity>,
+      alias: string,
+      condition?: string,
+      parameters?: ObjectLiteral,
+    ): this
+
     /**
      * LEFT JOINs entity and adds all selection properties to SELECT.
      * You also need to specify an alias of the joined data.
@@ -602,7 +620,7 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
         parameters?: ObjectLiteral,
     ): this {
         this.addSelect(alias)
-        this.leftJoin(entityOrProperty, alias, condition, parameters)
+        this.leftJoin(entityOrProperty as any, alias, condition, parameters)
         return this
     }
 

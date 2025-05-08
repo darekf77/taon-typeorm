@@ -28,6 +28,7 @@ import { OracleDriver } from "../driver/oracle/OracleDriver"
 import { InstanceChecker } from "../util/InstanceChecker"
 import { escapeRegExp } from "../util/escapeRegExp"
 import { CLASS } from "typescript-class-helpers/src"
+import { RelationPath } from "../relation-path";
 
 // todo: completely cover query builder with tests
 // todo: entityOrProperty can be target name. implement proper behaviour if it is.
@@ -304,6 +305,9 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
      * Sets entity's relation with which this query builder gonna work.
      */
     relation(propertyPath: string): RelationQueryBuilder<Entity>
+
+    // @ts-ignore
+    relation(propertyPath: RelationPath<Entity>): RelationQueryBuilder<Entity>
 
     /**
      * Sets entity's relation with which this query builder gonna work.
