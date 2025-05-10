@@ -1,6 +1,6 @@
 {
   "name": "taon-typeorm",
-  "version": "19.0.5",
+  "version": "19.0.6",
   "author": "Dariusz Filipiak",
   "dependencies": {
     "@angular-builders/custom-webpack": "~19.0.1",
