@@ -9,6 +9,8 @@
     "app-root-path",
   ],
 
+  "appId": "com.domain.example.taon-typeorm",
+
   "autoReleaseConfigAllowedItems": [{
     "artifactName": "npm-lib-and-cli-tool"
   }],
@@ -18,7 +20,7 @@
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
-
-    "scripts": {}
+    "scripts": {},
+    "description": "Description for taon-typeorm. Hello world!"
   }
 }
