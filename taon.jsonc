@@ -20,7 +20,7 @@
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
-    "scripts": {},
-    "description": "Description for taon-typeorm. Hello world!"
+    "description": "Description for taon-typeorm. Hello world!",
+    "scripts": {}
   }
 }
