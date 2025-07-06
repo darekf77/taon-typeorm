@@ -106,15 +106,7 @@ export class PlatformTools {
    * Gets global variable where global stuff can be stored.
    */
   static getGlobalVariable(): any {
-    //#region @websqlOnly
-    // @ts-ignore
-    window.global = window;
-    // @ts-ignore
-    return window.global;
-    //#endregion
-    //#region @backendFunc
-    return global
-    //#endregion
+    return globalThis;
   }
 
   /**

@@ -19,15 +19,7 @@ const window:any = global;
 //#endregion
 
 
-let environment = {} as any;
-//#region @backend
-// @ts-ignore
-environment = global['ENV'];
-//#endregion
-//#region @browser
-// @ts-ignore
-environment = window['ENV'];
-//#endregion
+let environment =   globalThis['ENV'];
 
 
 const SAVE_LOCAL_FORGE_TIMEOUT = 500;
@@ -54,11 +46,11 @@ export class SqljsDriver extends AbstractSqliteDriver {
       super(connection)
       //#region @browser
       // @ts-ignore
-      const localForge = window['localforage'];
+      const localForge = globalThis['localforage'];
       // @ts-ignore
       this.localForgeInstance = localForge?.createInstance({
         driver: localForge.INDEXEDDB,
-        storeName: 'firedev-typeorm_' + _.kebabCase(environment?.currentProjectGenericName),
+        storeName: 'taon-typeorm_' + _.kebabCase(environment?.currentProjectGenericName),
       })
       //#endregion
 
@@ -73,7 +65,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
         }
 
         // load sql.js package
-        this.loadDependencies()
+        this.loadDependencies();
     }
 
     // -------------------------------------------------------------------------
@@ -349,7 +341,7 @@ export class SqljsDriver extends AbstractSqliteDriver {
         if (PlatformTools.type === "browser") {
             //#region @browser
             // @ts-ignore
-            const sqlite = this.options.driver || window['SQL'] // @ts-ignore
+            const sqlite = this.options.driver || globalThis['SQL'] // @ts-ignore
             this.sqlite = sqlite
             //#endregion
         } else {

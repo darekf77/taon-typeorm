@@ -103,7 +103,7 @@ export class CordovaDriver extends AbstractSqliteDriver {
      */
     protected loadDependencies(): void {
         try {
-            const sqlite = this.options.driver || window.sqlitePlugin
+          const sqlite = this.options.driver || globalThis.sqlitePlugin
             this.sqlite = sqlite
         } catch (e) {
             throw new DriverPackageNotInstalledError(
