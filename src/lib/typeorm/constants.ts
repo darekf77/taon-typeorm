@@ -1,2 +1,3 @@
+import { CoreModels } from 'tnp-core/src';
 
-export const OrignalClassKey = '$$originalClass$$';
+export const OrignalClassKey = CoreModels.OrignalClassKey;
