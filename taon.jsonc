@@ -12,7 +12,8 @@
   "appId": "com.domain.example.taon-typeorm",
 
   "autoReleaseConfigAllowedItems": [{
-    "artifactName": "npm-lib-and-cli-tool"
+    "artifactName": "npm-lib-and-cli-tool",
+    "taskName": "npm"
   }],
 
   "isCoreProject": false,
