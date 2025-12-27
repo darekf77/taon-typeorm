@@ -13,10 +13,7 @@ import { ReplicationMode } from "../types/ReplicationMode"
 import { TypeORMError } from "../../error"
 import { _ } from 'tnp-core/src';
 
-//#region @backend
-// @ts-ignore
-const window:any = global;
-//#endregion
+
 
 
 let environment =   globalThis['ENV'];
@@ -27,7 +24,7 @@ const SAVE_LOCAL_FORGE_TIMEOUT = 500;
 export class SqljsDriver extends AbstractSqliteDriver {
     // The driver specific options.
     declare options: SqljsConnectionOptions;
-    localForgeInstance: any;
+    localForgeInstance: typeof import('localforage');
     databaseArrayFast = {};
     debounceSave = _.debounce(async (path)=> {
       // console.log(`SAVING TO DB START `)
@@ -45,12 +42,12 @@ export class SqljsDriver extends AbstractSqliteDriver {
     constructor(connection: DataSource) {
       super(connection)
       //#region @browser
-      // @ts-ignore
+
       const localForge = globalThis['localforage'];
-      // @ts-ignore
+
       this.localForgeInstance = localForge?.createInstance({
         driver: localForge.INDEXEDDB,
-        storeName: 'taon-typeorm_' + _.kebabCase(environment?.currentProjectGenericName),
+        storeName: 'taon-typeorm_' + _.kebabCase(globalThis['CURRENT_PROJECT_GENERIC_NAME']),
       })
       //#endregion
 
