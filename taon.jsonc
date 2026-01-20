@@ -3,25 +3,59 @@
   "version": "v21",
 
   "dependenciesNamesForNpmLib": [
-    "tnp-core",
-    "cli-highlight",
-    "@sqltools/formatter",
+    "@google-cloud/spanner",
+    "@sap/hana-client",
+    "@sqltools/formatter/lib/sqlFormatter",
     "app-root-path",
+    "better-sqlite3",
+    "chalk",
+    "cli-highlight",
+    "date-fns",
+    "debug",
+    "dotenv",
+    "glob",
+    "hdb-pool",
+    "ioredis",
+    "js-yaml",
+    "mkdirp",
+    "mongodb",
+    "mssql",
+    "mysql",
+    "mysql2",
+    "oracledb",
+    "pg",
+    "pg-native",
+    "pg-query-stream",
+    "react-native-sqlite-storage",
+    "redis",
+    "reflect-metadata",
+    "sha.js",
+    "sql.js",
+    "sqlite3",
+    "ts-node",
+    "typeorm-aurora-data-api-driver",
+    "uuid",
+    "xml2js",
+    "yargs",
   ],
 
   "appId": "com.domain.example.taon-typeorm",
 
-  "autoReleaseConfigAllowedItems": [{
-    "artifactName": "npm-lib-and-cli-tool",
-    "taskName": "npm"
-  }],
+  "autoReleaseConfigAllowedItems": [
+    {
+      "artifactName": "npm-lib-and-cli-tool",
+      "taskName": "npm",
+    },
+  ],
 
   "isCoreProject": false,
+  "isomorphicDependenciesForNpmLib": ["tnp-core", "typescript-class-helpers"],
+  "peerDependenciesNamesForNpmLib": [],
   "resources": [],
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
     "description": "Description for taon-typeorm. Hello world!",
-    "scripts": {}
-  }
+    "scripts": {},
+  },
 }
