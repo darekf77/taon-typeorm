@@ -152,7 +152,7 @@
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "prettier.endOfLine": "auto",
   "prettier.prettierPath": "./node_modules/prettier",
-  "window.title": "npm/taon-dev/taon-typeorm  [ ${activeEditorShort} ]",
+  "window.title": "taon-dev/taon-typeorm () [ ${activeEditorShort}]",
   "search.useIgnoreFiles": false,
 
   "search.include": [
