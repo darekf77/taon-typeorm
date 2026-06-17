@@ -1,6 +1,6 @@
 {
   "name": "taon-typeorm",
-  "version": "21.0.41",
+  "version": "21.0.42",
   "scripts": {
     "taon init": "taon init",
     "taon start": "taon start",
@@ -454,5 +454,9 @@
     "@parcel/watcher-linux-x64-glibc": "2.5.1",
     "@parcel/watcher-win32-x64-msvc": "2.5.1"
   },
-  "bin": {}
+  "bin": {
+    "taon-typeorm": "bin/taon-typeorm",
+    "taon-typeorm-debug": "bin/taon-typeorm-debug",
+    "taon-typeorm-debug-brk": "bin/taon-typeorm-debug-brk"
+  }
 }
