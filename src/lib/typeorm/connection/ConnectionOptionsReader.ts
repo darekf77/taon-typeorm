@@ -1,5 +1,5 @@
 //#region @backend
-import * as  appRootPath from "app-root-path"
+
 import  * as path from "path"
 //#endregion
 import { DataSourceOptions } from "../data-source/DataSourceOptions"
@@ -287,7 +287,7 @@ export class ConnectionOptionsReader {
     protected get baseDirectory(): string {
       //#region @backendFunc
         if (this.options && this.options.root) return this.options.root
-
+        const appRootPath = require("app-root-path");
         return appRootPath.path
         //#endregion
     }

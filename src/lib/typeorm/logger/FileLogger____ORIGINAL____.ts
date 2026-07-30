@@ -1,5 +1,5 @@
 import { FileLoggerOptions, LoggerOptions } from "./LoggerOptions"
-import appRootPath from "app-root-path"
+
 import { QueryRunner } from "../query-runner/QueryRunner"
 import { Logger } from "./Logger"
 import { PlatformTools } from "../platform/PlatformTools"
@@ -147,7 +147,8 @@ export class FileLogger implements Logger {
      * Writes given strings into the log file.
      */
     protected write(strings: string | string[]) {
-        strings = Array.isArray(strings) ? strings : [strings]
+        strings = Array.isArray(strings) ? strings : [strings];
+        const appRootPath = require("app-root-path");
         const basePath = appRootPath.path + "/"
         let logPath = "ormlogs.log"
         if (this.fileLoggerOptions && this.fileLoggerOptions.logPath) {
