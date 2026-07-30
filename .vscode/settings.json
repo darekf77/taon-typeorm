@@ -65,7 +65,6 @@
   ],
 
   "html.format.wrapAttributes": "force-aligned",
-  "workbench.colorTheme": "Light+",
   "tslint.autoFixOnSave": false,
   "eslint.enable": true,
   "tslint.enable": false,
