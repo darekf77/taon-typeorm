@@ -26,7 +26,7 @@ import { QueryResult } from "../../query-runner/QueryResult"
 import { QueryLock } from "../../query-runner/QueryLock"
 import { MetadataTableType } from "../types/MetadataTableType"
 import { InstanceChecker } from "../../util/InstanceChecker"
-import { promisify } from "util"
+
 
 /**
  * Runs queries on a single SQL Server database connection.
@@ -167,7 +167,7 @@ export class SapQueryRunner extends BaseQueryRunner implements QueryRunner {
      */
     async setAutoCommit(options: { status: "on" | "off" }) {
         const connection = await this.connect()
-
+        const { promisify } = require('util');
         const execute = promisify(connection.exec.bind(connection))
 
         connection.setAutoCommit(options.status === "on")

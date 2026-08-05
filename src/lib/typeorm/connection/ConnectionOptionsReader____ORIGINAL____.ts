@@ -1,4 +1,4 @@
-import path from "path"
+import { path } from "tnp-core/src"
 import { DataSourceOptions } from "../data-source/DataSourceOptions"
 import { PlatformTools } from "../platform/PlatformTools"
 import { ConnectionOptionsEnvReader } from "./options-reader/ConnectionOptionsEnvReader"

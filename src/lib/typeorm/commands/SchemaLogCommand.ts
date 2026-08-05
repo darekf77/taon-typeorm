@@ -1,12 +1,23 @@
 import { DataSource } from "../data-source/DataSource"
-import { highlight } from "cli-highlight"
+import { highlight as highlightBase } from "cli-highlight" // @esmRemove
 import * as yargs from "yargs"
-import chalk from "chalk"
+import {chalk} from "tnp-core/src"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
+import  {path} from "tnp-core/src"
 import  * as process from "process"
 import { CommandUtils } from "./CommandUtils"
-
+let highlight = void 0 as any;
+//#region @backend
+//#region @esmRemove
+highlight = highlightBase
+//#endregion
+//#region @cjsRemove
+highlight = args => args;
+//#endregion
+//#endregion
+//#region @browser
+highlight = args => args;
+//#endregion
 /**
  * Shows sql to be executed by schema:sync command.
  */

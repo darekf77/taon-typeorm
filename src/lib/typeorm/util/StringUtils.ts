@@ -1,7 +1,5 @@
-//#region @backend
-import shajs from "sha.js"
-//#endregion
-
+import { sha256 } from '@noble/hashes/sha2';
+import { bytesToHex } from '@noble/hashes/utils';
 /**
  * Converts string into camelCase.
  *
@@ -121,18 +119,15 @@ interface IHashOptions {
  * @param input String to be hashed.
  * @param options.length Optionally, shorten the output to desired length.
  */
-export function hash(input: string, options: IHashOptions = {}): string {
-  //#region @backendFunc
-    const hashFunction = shajs("sha256")
+export function hash(
+  input: string,
+  options: IHashOptions = {},
+): string {
+  const hashedInput = bytesToHex(
+    sha256(new TextEncoder().encode(input)),
+  );
 
-    hashFunction.update(input, "utf8")
-
-    const hashedInput = hashFunction.digest("hex")
-
-    if (options.length) {
-        return hashedInput.slice(0, options.length)
-    }
-
-    return hashedInput
-    //#endregion
+  return options.length
+    ? hashedInput.slice(0, options.length)
+    : hashedInput;
 }

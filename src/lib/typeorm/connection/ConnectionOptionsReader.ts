@@ -1,6 +1,6 @@
 //#region @backend
 
-import  * as path from "path"
+import  {path} from "tnp-core/src"
 //#endregion
 import { DataSourceOptions } from "../data-source/DataSourceOptions"
 import { PlatformTools } from "../platform/PlatformTools"

@@ -1,5 +1,5 @@
-import mkdirp from "mkdirp"
-import path from "path"
+import {mkdirp} from "tnp-core/src"
+import { path } from "tnp-core/src"
 import { DriverPackageNotInstalledError } from "../../error"
 import { DriverOptionNotSetError } from "../../error"
 import { PlatformTools } from "../../platform/PlatformTools"

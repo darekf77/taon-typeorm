@@ -1,7 +1,15 @@
-import debug from "debug"
+import debugType from "debug" //@esmRemove
 import { Logger } from "./Logger"
 import { QueryRunner } from "../query-runner/QueryRunner"
 import { PlatformTools } from "../platform/PlatformTools"
+let debug: any = (namespace: string) => {
+  return (...args: any[]) => {
+    console.debug(`[${namespace}]`, ...args);
+  };
+}
+//#region @esmRemove
+debug = debugType;
+//#endregion
 
 /**
  * Performs logging of the events in TypeORM via debug library.

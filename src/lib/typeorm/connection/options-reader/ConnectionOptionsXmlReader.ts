@@ -1,4 +1,4 @@
-import { parseString as xmlParser } from "xml2js"
+import { XMLParser } from 'fast-xml-parser';
 import { PlatformTools } from "../../platform/PlatformTools"
 import { DataSourceOptions } from "../../data-source/DataSourceOptions"
 
@@ -61,14 +61,14 @@ export class ConnectionOptionsXmlReader {
     /**
      * Reads xml file contents and returns them in a promise.
      */
-    protected readXml(path: string): Promise<any> {
-        const xmlOptions = { trim: true, explicitRoot: false }
-        return new Promise((ok, fail) => {
-            xmlParser(
-                PlatformTools.readFileSync(path),
-                xmlOptions,
-                (err: any, result: any) => (err ? fail(err) : ok(result)),
-            )
-        })
+    protected async readXml(filePath: string): Promise<any> {
+      const parser = new XMLParser({
+        trimValues: true,
+        ignoreAttributes: false,
+      });
+
+      return parser.parse(
+        PlatformTools.readFileSync(filePath),
+      );
     }
 }

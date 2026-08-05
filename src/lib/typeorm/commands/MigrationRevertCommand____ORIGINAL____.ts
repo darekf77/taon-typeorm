@@ -1,7 +1,7 @@
 import { DataSource } from "../data-source/DataSource"
 import * as yargs from "yargs"
 import { PlatformTools } from "../platform/PlatformTools"
-import path from "path"
+import { path } from "tnp-core/src"
 import process from "process"
 import { CommandUtils } from "./CommandUtils"
 

@@ -1,6 +1,6 @@
 //#region @backend
-import  * as fs from "fs"
-import  * as path from "path"
+import {fse as fs} from "tnp-core/src"
+import  {path} from "tnp-core/src"
 import { pathToFileURL } from "url"
 //#endregion
 

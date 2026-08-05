@@ -1,7 +1,7 @@
 import { CommandUtils } from "./CommandUtils"
-import * as path from "path"
+import {path} from "tnp-core/src"
 import * as yargs from "yargs"
-import chalk from "chalk"
+import {chalk} from "tnp-core/src"
 import { exec } from "child_process"
 import { TypeORMError } from "../error"
 import { PlatformTools } from "../platform/PlatformTools"
@@ -391,7 +391,7 @@ export class UserController {
 
     async one(request: Request, response: Response, next: NextFunction) {
         const id = parseInt(request.params.id)
-        
+
 
         const user = await this.userRepository.findOne({
             where: { id }

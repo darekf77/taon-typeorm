@@ -1,6 +1,6 @@
 import * as yargs from "yargs"
-import chalk from "chalk"
-import  * as path from "path"
+import {chalk} from "tnp-core/src"
+import  {path} from "tnp-core/src"
 import { PlatformTools } from "../platform/PlatformTools"
 import { CommandUtils } from "./CommandUtils"
 

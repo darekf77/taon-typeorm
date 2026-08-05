@@ -1,5 +1,5 @@
 //#region @backend
-import  * as glob from "glob"
+import {glob} from "tnp-core/src"
 //#endregion
 import { PlatformTools } from "../platform/PlatformTools"
 import { Logger } from "../logger/Logger"

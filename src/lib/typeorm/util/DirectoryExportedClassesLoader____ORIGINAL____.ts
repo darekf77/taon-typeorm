@@ -1,4 +1,4 @@
-import glob from "glob"
+import {glob} from "tnp-core/src"
 import { PlatformTools } from "../platform/PlatformTools"
 import { Logger } from "../logger/Logger"
 import { importOrRequireFile } from "./ImportUtils"

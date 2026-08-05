@@ -1,8 +1,8 @@
 import { CommandUtils } from "./CommandUtils"
 import * as yargs from "yargs"
-import chalk from "chalk"
+import {chalk} from "tnp-core/src"
 import { PlatformTools } from "../platform/PlatformTools"
-import  * as path from "path"
+import  {path} from "tnp-core/src"
 
 /**
  * Generates a new entity.

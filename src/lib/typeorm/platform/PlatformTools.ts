@@ -1,90 +1,26 @@
 
+import { fse as fs, chalk, path} from "tnp-core/src"
+import type { Theme } from "cli-highlight"
+import { highlight as highlightBase} from "cli-highlight" // @esmRemove
 //#region @backend
-import * as path from "path"
-import * as fs from "fs"
-import * as dotenv from "dotenv"
-import chalkBackend from "chalk"
-import { highlight as highlightBackend, Theme as ThemeBackend } from "cli-highlight"
-
+import dotenv from "dotenv" //@esmRemove
 export { ReadStream } from "fs"
 export { EventEmitter } from "events"
 export { Readable, Writable } from "stream"
 //#endregion
 
-interface Theme
+let highlight = void 0 as any;
 //#region @backend
- extends ThemeBackend
- //#endregion
- {
-
-}
-
-
-let highlight
-//#region @backend
-= highlightBackend
+//#region @esmRemove
+highlight = highlightBase
 //#endregion
-//#region @websqlOnly
-highlight = (args) => args;
+//#region @cjsRemove
+highlight = args => args;
 //#endregion
-
-let chalk
-  //#region @backend
-  = chalkBackend;
 //#endregion
-//#region @websqlOnly
-chalk = { // chalk websql mock
-  // @ts-ignore
-  blueBright(args) {
-    return args;
-  },
-  // @ts-ignore
-  white(args) {
-    return args;
-  },
-  // @ts-ignore
-  gray(args) {
-    return args;
-  },
-  // @ts-ignore
-  magenta(args) {
-    return args;
-  },
-  // @ts-ignore
-  magentaBright(args) {
-    return args;
-  },
-  // @ts-ignore
-  yellow(args) {
-    return args;
-  },
-  // @ts-ignore
-  red(args) {
-    return args;
-  },
-  // @ts-ignore
-  bgRed(args) {
-    return args;
-  },
-  // @ts-ignore
-  underline(args) {
-    return args;
-  },
-  // @ts-ignore
-  black(args) {
-    return args;
-  },
-};
-
-Object.keys(chalk).forEach(key => {
-  Object.keys(chalk).forEach(key2 => {
-    chalk[key][key2] = chalk[key];
-  });
-});
-
-
+//#region @browser
+highlight = args => args;
 //#endregion
-
 
 /**
  * Platform-specific tools.
@@ -327,7 +263,9 @@ export class PlatformTools {
    */
   static dotenv(pathStr: string): void {
     //#region @backend
+    //#region @esmRemove
     dotenv.config({ path: pathStr })
+    //#endregion
     //#endregion
   }
 

@@ -1,5 +1,5 @@
 import fs from "fs"
-import path from "path"
+import { path } from "tnp-core/src"
 import { pathToFileURL } from "url"
 
 export async function importOrRequireFile(

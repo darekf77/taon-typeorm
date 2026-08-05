@@ -1,5 +1,5 @@
-import * as mkdirp from "mkdirp"
-import  * as path from "path"
+import {mkdirp} from "tnp-core/src"
+import  {path} from "tnp-core/src"
 import { DriverPackageNotInstalledError } from "../../error/DriverPackageNotInstalledError"
 import { SqliteQueryRunner } from "./SqliteQueryRunner"
 import { DriverOptionNotSetError } from "../../error/DriverOptionNotSetError"

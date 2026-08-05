@@ -1,4 +1,4 @@
-import path from "path"
+import { path } from "tnp-core/src"
 import * as process from "process"
 import * as yargs from "yargs"
 import { PlatformTools } from "../platform/PlatformTools"

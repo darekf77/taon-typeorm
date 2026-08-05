@@ -1,8 +1,8 @@
 import { DataSource } from "../data-source/DataSource"
 import * as yargs from "yargs"
-import chalk from "chalk"
+import {chalk} from "tnp-core/src"
 import { PlatformTools } from "../platform/PlatformTools"
-import * as path from "path"
+import {path} from "tnp-core/src"
 import  * as process from "process"
 import { CommandUtils } from "./CommandUtils"
 

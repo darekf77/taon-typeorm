@@ -1,11 +1,11 @@
 import { CommandUtils } from "./CommandUtils"
 import { camelCase } from "../util/StringUtils"
 import * as yargs from "yargs"
-import chalk from "chalk"
+import {chalk} from "tnp-core/src"
 import { format } from "@sqltools/formatter/lib/sqlFormatter"
 import { PlatformTools } from "../platform/PlatformTools"
 import { DataSource } from "../data-source"
-import * as path from "path"
+import {path} from "tnp-core/src"
 import process from "process"
 
 /**

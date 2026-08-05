@@ -1,13 +1,24 @@
-import * as path from "path"
-import * as fs from "fs"
-import dotenv from "dotenv"
-import chalk from "chalk"
-import { highlight, Theme } from "cli-highlight"
+import dotenv from "dotenv" //@esmRemove
+import {chalk, fse, path} from "tnp-core/src"
+import type { Theme } from "cli-highlight"
+import { highlight as highlightBase  } from "cli-highlight" // @esmRemove
 
 export { ReadStream } from "fs"
 export { EventEmitter } from "events"
 export { Readable, Writable } from "stream"
 
+let highlight = void 0 as any;
+//#region @backend
+//#region @esmRemove
+highlight = highlightBase
+//#endregion
+//#region @cjsRemove
+highlight = args => args;
+//#endregion
+//#endregion
+//#region @browser
+highlight = args => args;
+//#endregion
 /**
  * Platform-specific tools.
  */
