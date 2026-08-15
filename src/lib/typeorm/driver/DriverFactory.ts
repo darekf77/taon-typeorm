@@ -24,8 +24,9 @@ import { SapDriver } from "./sap/SapDriver"
 import { BetterSqlite3Driver } from "./better-sqlite3/BetterSqlite3Driver"
 import { CapacitorDriver } from "./capacitor/CapacitorDriver"
 import { SpannerDriver } from "./spanner/SpannerDriver"
+import { D1Driver } from "./cloudflare/D1Driver"
 //#endregion
-
+import { D1Database } from "./cloudflare/D1Driver"
 
 /**
  * Helps to create drivers.
@@ -34,10 +35,12 @@ export class DriverFactory {
     /**
      * Creates a new driver depend on a given connection's driver type.
      */
-    create(connection: DataSource): Driver {
+    create(connection: DataSource, d1:D1Database): Driver {
         const { type } = connection.options
         switch (type) {
           //#region @backend
+            case "d1":
+                return new D1Driver(connection,d1);
             case "mysql":
                 return new MysqlDriver(connection)
             case "postgres":
@@ -81,7 +84,8 @@ export class DriverFactory {
             //#endregion
             default:
                 throw new MissingDriverError(type, [
-                  //#region @backend
+                    //#region @backend
+                    "d1",
                     "aurora-mysql",
                     "aurora-postgres",
                     "better-sqlite3",

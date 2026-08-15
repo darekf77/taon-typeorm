@@ -151,7 +151,7 @@ export class DataSource {
             this.options.logger,
             this.options.logging,
         )
-        this.driver = new DriverFactory().create(this)
+        this.driver = new DriverFactory().create(this, options.database)
         this.manager = this.createEntityManager()
         this.namingStrategy =
             options.namingStrategy || new DefaultNamingStrategy()
