@@ -1,4 +1,7 @@
+import { ObjectLiteral } from '../../common/ObjectLiteral';
 import { DataSource } from '../../data-source/DataSource';
+import { EntityMetadata } from '../../metadata/EntityMetadata';
+import { ReturningType } from '../Driver';
 import { AbstractSqliteDriver } from '../sqlite-abstract/AbstractSqliteDriver';
 import { ReplicationMode } from '../types/ReplicationMode';
 
@@ -22,11 +25,46 @@ export class D1Driver extends AbstractSqliteDriver {
     // Nothing to close.
   }
 
+  isReturningSqlSupported(returningType?: ReturningType): boolean {
+    return false;
+  }
+
   createQueryRunner(mode: ReplicationMode) {
     return new D1QueryRunner(this);
   }
 
   async createDatabaseConnection() {
     return this.databaseConnection;
+  }
+
+  createGeneratedMap(
+    metadata: EntityMetadata,
+    insertResult: any,
+    entityIndex: number,
+  ): ObjectLiteral | undefined {
+    // console.log('[D1 createGeneratedMap]', {
+    //   insertResult,
+    //   generatedColumns: metadata.generatedColumns.map(c => ({
+    //     propertyName: c.propertyName,
+    //     generationStrategy: c.generationStrategy,
+    //     type: c.type,
+    //   })),
+    // });
+
+    const generatedColumn = metadata.generatedColumns.find(
+      column => column.isPrimary && column.generationStrategy === 'increment',
+    );
+
+    if (!generatedColumn) {
+      return undefined;
+    }
+
+    const value = insertResult?.meta?.last_row_id ?? insertResult?.lastID;
+
+    if (value === undefined || value === null) {
+      return undefined;
+    }
+
+    return generatedColumn.createValueMap(value);
   }
 }

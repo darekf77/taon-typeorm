@@ -96,8 +96,14 @@ export class D1QueryRunner extends AbstractSqliteQueryRunner {
 
     const result = await stmt.run();
 
+    const sqliteLikeResult = {
+      ...result,
+      lastID: result.meta?.last_row_id,
+      changes: result.meta?.changes,
+    };
+
     if (!useStructuredResult) {
-      return result;
+      return sqliteLikeResult;
     }
 
     const qr = new QueryResult();

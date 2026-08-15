@@ -631,6 +631,7 @@ export class EntityMetadata {
     getEntityIdMap(
         entity: ObjectLiteral | undefined,
     ): ObjectLiteral | undefined {
+      // console.log('this.primaryColumns',this.primaryColumns)
         if (!entity) return undefined
 
         return EntityMetadata.getValueMap(entity, this.primaryColumns, {
