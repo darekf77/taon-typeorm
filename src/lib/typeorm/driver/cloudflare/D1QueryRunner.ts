@@ -65,6 +65,10 @@ export class D1QueryRunner extends AbstractSqliteQueryRunner {
     parameters: any[] = [],
     useStructuredResult = false,
   ): Promise<any> {
+
+    // console.log('[D1 QUERY]', query);
+    // console.log('[D1 PARAMS]', parameters);
+
     const db = this.driver.databaseConnection;
 
     let stmt = db.prepare(query);
