@@ -29,31 +29,85 @@ export class D1QueryRunner extends AbstractSqliteQueryRunner {
   async clearDatabase(): Promise<void> {
     console.log('[D1] clearDatabase');
 
-    const views: Array<{ query: string }> = await this.query(`
-      SELECT 'DROP VIEW "' || name || '";' AS query
+    const views: Array<{ name: string }> = await this.query(`
+      SELECT name
       FROM sqlite_master
       WHERE type = 'view'
         AND name NOT LIKE '_cf_%'
         AND name NOT LIKE 'sqlite_%'
     `);
 
-    const tables: Array<{ query: string }> = await this.query(`
-      SELECT 'DROP TABLE "' || name || '";' AS query
+    const tables: Array<{ name: string }> = await this.query(`
+      SELECT name
       FROM sqlite_master
       WHERE type = 'table'
         AND name NOT LIKE '_cf_%'
         AND name NOT LIKE 'sqlite_%'
     `);
 
-    for (const { query } of views) {
-      console.log('[D1 DROP]', query);
-      await this.query(query);
+    // Views first
+    for (const { name } of views) {
+      const sql = `DROP VIEW IF EXISTS "${this.escapeIdentifier(name)}"`;
+      console.log('[D1 DROP]', sql);
+      await this.query(sql);
     }
 
-    for (const { query } of tables) {
-      console.log('[D1 DROP]', query);
-      await this.query(query);
+    const dependencies = new Map<string, Set<string>>();
+
+    for (const { name } of tables) {
+      const escapedName = this.escapeIdentifier(name);
+
+      const foreignKeys: Array<{ table: string }> = await this.query(
+        `PRAGMA foreign_key_list("${escapedName}")`,
+      );
+
+      dependencies.set(
+        name,
+        new Set(
+          foreignKeys
+            .map(x => x.table)
+            .filter(parent => tables.some(table => table.name === parent)),
+        ),
+      );
     }
+
+    const remaining = new Set(tables.map(x => x.name));
+
+    while (remaining.size > 0) {
+      // Drop tables which are NOT parents of another remaining table.
+      // In other words: FK children first.
+      const candidates = [...remaining].filter(tableName => {
+        return ![...remaining].some(otherTable => {
+          if (otherTable === tableName) {
+            return false;
+          }
+
+          return dependencies.get(otherTable)?.has(tableName);
+        });
+      });
+
+      // Cyclic FK graph.
+      if (candidates.length === 0) {
+        throw new Error(
+          `[D1] Cannot clear database because of cyclic foreign keys: ` +
+            [...remaining].join(', '),
+        );
+      }
+
+      for (const name of candidates) {
+        const sql = `DROP TABLE IF EXISTS "${this.escapeIdentifier(name)}"`;
+
+        console.log('[D1 DROP]', sql);
+
+        await this.query(sql);
+
+        remaining.delete(name);
+      }
+    }
+  }
+
+  private escapeIdentifier(name: string): string {
+    return name.replace(/"/g, '""');
   }
 
   private isInternalD1Object(name: string): boolean {
@@ -65,7 +119,6 @@ export class D1QueryRunner extends AbstractSqliteQueryRunner {
     parameters: any[] = [],
     useStructuredResult = false,
   ): Promise<any> {
-
     // console.log('[D1 QUERY]', query);
     // console.log('[D1 PARAMS]', parameters);
 
