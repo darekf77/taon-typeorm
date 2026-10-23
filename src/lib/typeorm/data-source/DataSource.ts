@@ -48,6 +48,7 @@ import { DriverUtils } from "../driver/DriverUtils"
 import { InstanceChecker } from "../util/InstanceChecker"
 import { ObjectLiteral } from "../common/ObjectLiteral"
 import { OrignalClassKey } from "../constants"
+import { CoreModels } from "tnp-core/src"
 
 /**
  * DataSource is a pre-defined connection configuration to a specific database.
@@ -643,6 +644,11 @@ export class DataSource {
     ): EntityMetadata | undefined {
         return this.entityMetadatas.find((metadata) => {
             if (metadata.target === target) return true
+
+            if(metadata.givenTableName === target[CoreModels.ClassNameStaticProperty]) {
+              return true;
+            }
+
             if (InstanceChecker.isEntitySchema(target)) {
                 return metadata.name === target.options.name
             }
@@ -656,6 +662,7 @@ export class DataSource {
                     )
                 }
             }
+
             if (
                 ObjectUtils.isObject(target) &&
                 typeof target.name === "string"
