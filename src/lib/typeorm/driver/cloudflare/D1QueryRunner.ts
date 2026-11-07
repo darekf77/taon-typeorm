@@ -1,3 +1,4 @@
+import { QueryRunnerAlreadyReleasedError } from '../../error/QueryRunnerAlreadyReleasedError';
 import { QueryResult } from '../../query-runner/QueryResult';
 import { Broadcaster } from '../../subscriber/Broadcaster';
 import { AbstractSqliteQueryRunner } from '../sqlite-abstract/AbstractSqliteQueryRunner';
@@ -119,55 +120,87 @@ export class D1QueryRunner extends AbstractSqliteQueryRunner {
     parameters: any[] = [],
     useStructuredResult = false,
   ): Promise<any> {
-    // console.log('[D1 QUERY]', query);
-    // console.log('[D1 PARAMS]', parameters);
+    if (this.isReleased) {
+      throw new QueryRunnerAlreadyReleasedError();
+    }
 
     const db = this.driver.databaseConnection;
 
-    let stmt = db.prepare(query);
+    // TypeORM SQL logging
+    this.connection.logger.logQuery(query, parameters, this);
 
-    if (parameters.length > 0) {
-      stmt = stmt.bind(...parameters);
-    }
+    const queryStartTime = Date.now();
 
-    const normalized = query.trim().toUpperCase();
+    try {
+      let stmt = db.prepare(query);
 
-    const isRead =
-      normalized.startsWith('SELECT') ||
-      normalized.startsWith('WITH') ||
-      (normalized.startsWith('PRAGMA') && !normalized.includes('='));
+      if (parameters.length > 0) {
+        stmt = stmt.bind(...parameters);
+      }
 
-    if (isRead) {
-      const result = await stmt.all();
+      const normalized = query.trim().toUpperCase();
+
+      const isRead =
+        normalized.startsWith('SELECT') ||
+        normalized.startsWith('WITH') ||
+        (normalized.startsWith('PRAGMA') && !normalized.includes('='));
+
+      let result: any;
+
+      if (isRead) {
+        result = await stmt.all();
+      } else {
+        result = await stmt.run();
+      }
+
+      // TypeORM slow-query logging
+      const maxQueryExecutionTime =
+        this.connection.options.maxQueryExecutionTime;
+
+      const executionTime = Date.now() - queryStartTime;
+
+      if (maxQueryExecutionTime && executionTime > maxQueryExecutionTime) {
+        this.connection.logger.logQuerySlow(
+          executionTime,
+          query,
+          parameters,
+          this,
+        );
+      }
+
+      if (isRead) {
+        if (!useStructuredResult) {
+          return result.results ?? [];
+        }
+
+        const qr = new QueryResult();
+        qr.records = result.results ?? [];
+        qr.raw = result;
+
+        return qr;
+      }
+
+      const sqliteLikeResult = {
+        ...result,
+        lastID: result.meta?.last_row_id,
+        changes: result.meta?.changes,
+      };
 
       if (!useStructuredResult) {
-        return result.results ?? [];
+        return sqliteLikeResult;
       }
 
       const qr = new QueryResult();
-      qr.records = result.results ?? [];
       qr.raw = result;
+      qr.affected = result.meta?.changes ?? 0;
 
       return qr;
+    } catch (error) {
+      // TypeORM error logging
+      this.connection.logger.logQueryError(error, query, parameters, this);
+
+      throw error;
     }
-
-    const result = await stmt.run();
-
-    const sqliteLikeResult = {
-      ...result,
-      lastID: result.meta?.last_row_id,
-      changes: result.meta?.changes,
-    };
-
-    if (!useStructuredResult) {
-      return sqliteLikeResult;
-    }
-
-    const qr = new QueryResult();
-    qr.raw = result;
-    qr.affected = result.meta?.changes ?? 0;
-
-    return qr;
   }
 
   async startTransaction() {
